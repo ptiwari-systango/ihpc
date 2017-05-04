@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>I Hate Power Companies.com</title>
+<!-- Reset css -->
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="css/theme.css" />
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet" />
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+</head>
+<body  class="inner-page">
+<div class="top_header navbar-fixed-top sticky-header fixed">
+  <nav class="navbar">
+    <div class="container-fluid">
+      <div class="col-lg-3">
+        <div class="navbar-header"> <a class="navbar-brand" href="#"><img src="images/logo.png" /></a> </div>
+      </div>
+      <div class="col-lg-9">
+        <ul class="nav navbar-nav pull-right">
+          <li><a href="#">Reviews</a></li>
+          <li><a href="#">Companies</a></li>
+          <li><a href="#">For Business</a></li>
+          <li class="active top_submit_review"><a href="#">submit review</a></li>
+          <li class="top_login"><a href="#"> Log in </a></li>
+          <li><a href="#">Sign up</a></li>
+          <li><a href="#"><img src="images/bars_icon.png" /></a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+<div class="clearfix"></div>
+<div class="modal fade ihpc-modal" id="reviews-by-location" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header" style="border-bottom: 0;">
+                <button type="button" class="close" data-dismiss="modal">
+                       <span aria-hidden="true">×</span>
+                       <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-map-marker" aria-hidden="true"></i> Filter Reviews by Location</h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">                
+				<div class="search-box col-sm-12 clearfix">          
+				  <form class="clearfix">
+					<div class="search-for-car clearfix">
+					  <div class="inner-search">
+						<div class="col-lg-12 col-md-12  col-sm-12 col-xs-12">
+						  <input name="company_name" id="company_name" placeholder="Company Name" class="form-control search-input width-100" type="text">
+						</div>
+					  </div>
+					  <input value="" class="btn-style inner-search-button " data-toggle="modal" data-target="#reviews-by-location" type="button">
+					</div>
+					<span class="address">USA, 101 Address Avenue, Newport Beach</span>
+				  </form>
+				</div>
+				<div class="clearfix"></div>
+            </div>
+            
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn" data-dismiss="modal">
+                            CANCEL
+                </button>
+                <button type="button" class="btn modal-footer-btn">
+                    SUBMIT                
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- main-content -->
+<div class="container main-content">
+  <div class="col-lg-12">
+    <h1>Browse Companies</h1>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="search-box ">
+          <label>All companies 49821 </label>
+          <form class="clearfix">
+            <div class="search-for-car clearfix">
+              <div class="inner-search">
+                <div class="col-lg-12 col-md-12  col-sm-12 col-xs-12">
+                  <input name="company_name" id="company_name" class="form-control search-input width-100" placeholder="Company Name" type="text" />
+                </div>
+              </div>
+              <input value="" class="btn-style inner-search-button " type="button" data-toggle="modal" data-target="#reviews-by-location" />
+            </div>
+          </form>
+        </div>
+        <div class="clearfix"></div>
+        <strong class="red_bold">Most complained about</strong> </div>
+    </div>
+    <div class="company_list clearfix">
+      <div class="col-sm-2">
+        <div class="company_logo"><img src="images/company_logo.png" alt="company logo" /></div>
+      </div>
+      <div class="col-sm-5">
+        <h3 class="company_list_title"> Cleco </h3>
+        <p class="company_url">www.abc.com</p>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+      </div>
+      <div class="col-sm-3 customer_feedback">
+        <h3 class="customer_list_title"><img src="images/like.png" /> Customers like </h3>
+        <p class="pl-30">Having tv when it does work 23<br />
+          Picture quality 15<br />
+          Nfl ticket 7</p>
+        <div class="separatore clearfix"></div>
+        <h3 class="customer_list_title"><img src="images/unlike.png" /> Customers like </h3>
+        <p class="pl-30">Poor customer service 92<br />
+          Customer service 75<br />
+          Lack of service 38 </p>
+      </div>
+      <div class="col-sm-2">
+        <h3 class="text-center rating_title ">2.5</h3>
+        <div class="rating_bulb"><img src="images/rating_bulb.png" /></div>
+        <a data-toggle="modal" data-target="#choose-a-plan" class="respond_customer_btn"> Respond to your customers </a>  </div>
+      <div class="clearfix"></div>
+      <div class="col-md-10 col-md-offset-2 customer_list_footer">
+        <div class="col-sm-1 text-center c_l_f_resolved"> <strong>23</strong> Issues<br />
+          Resolved </div>
+        <div class="col-sm-1 text-center c_l_f_reviews"> 9,019
+          Reviews </div>
+        <div class="col-sm-1 text-center c_l_f_losses"> $1.9M
+          claimed<br />
+          losses </div>
+        <div class="col-sm-1 text-center c_l_f_average"> $207<br />
+          average </div>
+        <div class="col-sm-1 text-center c_l_f_view "> 330K<br />
+          views </div>
+        <div class="col-sm-4 text-center telecommunications"> <img src="images/telecommunications.png" /> Telecommunications </div>
+      </div>
+    </div>
+    <div class="company_list clearfix">
+      <div class="col-sm-2">
+        <div class="company_logo"><img src="images/company_logo.png" alt="company logo" /></div>
+      </div>
+      <div class="col-sm-5">
+        <h3 class="company_list_title"> Cleco </h3>
+        <p class="company_url">www.abc.com</p>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+      </div>
+      <div class="col-sm-3 customer_feedback">
+        <h3 class="customer_list_title"><img src="images/like.png" /> Customers like </h3>
+        <p class="pl-30">Having tv when it does work 23<br />
+          Picture quality 15<br />
+          Nfl ticket 7</p>
+        <div class="separatore clearfix"></div>
+        <h3 class="customer_list_title"><img src="images/unlike.png" /> Customers like </h3>
+        <p class="pl-30">Poor customer service 92<br />
+          Customer service 75<br />
+          Lack of service 38 </p>
+      </div>
+      <div class="col-sm-2">
+        <h3 class="text-center rating_title ">2.5</h3>
+        <div class="rating_bulb"><img src="images/rating_bulb.png" /></div>
+        <a data-toggle="modal" data-target="#choose-a-plan" class="respond_customer_btn"> Respond to your customers </a>  </div>
+      <div class="clearfix"></div>
+      <div class="col-md-10 col-md-offset-2 customer_list_footer"> </div>
+    </div>
+    <div class="company_list clearfix">
+      <div class="col-sm-2">
+        <div class="company_logo"><img src="images/company_logo.png" alt="company logo" /></div>
+      </div>
+      <div class="col-sm-5">
+        <h3 class="company_list_title"> Cleco </h3>
+        <p class="company_url">www.abc.com</p>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+      </div>
+      <div class="col-sm-3 customer_feedback">
+        <h3 class="customer_list_title"><img src="images/like.png" /> Customers like </h3>
+        <p class="pl-30">Having tv when it does work 23<br />
+          Picture quality 15<br />
+          Nfl ticket 7</p>
+        <div class="separatore clearfix"></div>
+        <h3 class="customer_list_title"><img src="images/unlike.png" /> Customers like </h3>
+        <p class="pl-30">Poor customer service 92<br />
+          Customer service 75<br />
+          Lack of service 38 </p>
+      </div>
+      <div class="col-sm-2">
+        <h3 class="text-center rating_title ">2.5</h3>
+        <div class="rating_bulb"><img src="images/rating_bulb.png" /></div>
+        <a data-toggle="modal" data-target="#choose-a-plan" class="respond_customer_btn"> Respond to your customers </a>  </div>
+      <div class="clearfix"></div>
+      <div class="col-md-10 col-md-offset-2 customer_list_footer"> </div>
+    </div>
+    <div class="company_list clearfix">
+      <div class="col-sm-2">
+        <div class="company_logo"><img src="images/company_logo.png" alt="company logo" /></div>
+      </div>
+      <div class="col-sm-5">
+        <h3 class="company_list_title"> Cleco </h3>
+        <p class="company_url">www.abc.com</p>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+      </div>
+      <div class="col-sm-3 customer_feedback">
+        <h3 class="customer_list_title"><img src="images/like.png" /> Customers like </h3>
+        <p class="pl-30">Having tv when it does work 23<br />
+          Picture quality 15<br />
+          Nfl ticket 7</p>
+        <div class="separatore clearfix"></div>
+        <h3 class="customer_list_title"><img src="images/unlike.png" /> Customers like </h3>
+        <p class="pl-30">Poor customer service 92<br />
+          Customer service 75<br />
+          Lack of service 38 </p>
+      </div>
+      <div class="col-sm-2">
+        <h3 class="text-center rating_title ">2.5</h3>
+        <div class="rating_bulb"><img src="images/rating_bulb.png" /></div>
+        <a data-toggle="modal" data-target="#choose-a-plan" class="respond_customer_btn"> Respond to your customers </a>  </div>
+      <div class="clearfix"></div>
+      <div class="col-md-10 col-md-offset-2 customer_list_footer"> </div>
+    </div>
+    <div class="company_list clearfix">
+      <div class="col-sm-2">
+        <div class="company_logo"><img src="images/company_logo.png" alt="company logo" /></div>
+      </div>
+      <div class="col-sm-5">
+        <h3 class="company_list_title"> Cleco </h3>
+        <p class="company_url">www.abc.com</p>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+      </div>
+      <div class="col-sm-3 customer_feedback">
+        <h3 class="customer_list_title"><img src="images/like.png" /> Customers like </h3>
+        <p class="pl-30">Having tv when it does work 23<br />
+          Picture quality 15<br />
+          Nfl ticket 7</p>
+        <div class="separatore clearfix"></div>
+        <h3 class="customer_list_title"><img src="images/unlike.png" /> Customers like </h3>
+        <p class="pl-30">Poor customer service 92<br />
+          Customer service 75<br />
+          Lack of service 38 </p>
+      </div>
+      <div class="col-sm-2">
+        <h3 class="text-center rating_title ">2.5</h3>
+        <div class="rating_bulb"><img src="images/rating_bulb.png" /></div>
+        <a data-toggle="modal" data-target="#choose-a-plan" class="respond_customer_btn"> Respond to your customers </a>  </div>
+      <div class="clearfix"></div>
+      <div class="col-md-10 col-md-offset-2 customer_list_footer"> </div>
+    </div>
+    <div class="company_list clearfix">
+      <div class="col-sm-2">
+        <div class="company_logo"><img src="images/company_logo.png" alt="company logo" /></div>
+      </div>
+      <div class="col-sm-5">
+        <h3 class="company_list_title"> Cleco </h3>
+        <p class="company_url">www.abc.com</p>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+      </div>
+      <div class="col-sm-3 customer_feedback">
+        <h3 class="customer_list_title"><img src="images/like.png" /> Customers like </h3>
+        <p class="pl-30">Having tv when it does work 23<br />
+          Picture quality 15<br />
+          Nfl ticket 7</p>
+        <div class="separatore clearfix"></div>
+        <h3 class="customer_list_title"><img src="images/unlike.png" /> Customers like </h3>
+        <p class="pl-30">Poor customer service 92<br />
+          Customer service 75<br />
+          Lack of service 38 </p>
+      </div>
+      <div class="col-sm-2">
+        <h3 class="text-center rating_title ">2.5</h3>
+        <div class="rating_bulb"><img src="images/rating_bulb.png" /></div>
+        <a data-toggle="modal" data-target="#choose-a-plan" class="respond_customer_btn"> Respond to your customers </a>  </div>
+      <div class="clearfix"></div>
+      <div class="col-md-10 col-md-offset-2 customer_list_footer"> </div>
+    </div>
+    <div class="company_list clearfix">
+      <div class="col-sm-2">
+        <div class="company_logo"><img src="images/company_logo.png" alt="company logo" /></div>
+      </div>
+      <div class="col-sm-5">
+        <h3 class="company_list_title"> Cleco </h3>
+        <p class="company_url">www.abc.com</p>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+      </div>
+      <div class="col-sm-3 customer_feedback">
+        <h3 class="customer_list_title"><img src="images/like.png" /> Customers like </h3>
+        <p class="pl-30">Having tv when it does work 23<br />
+          Picture quality 15<br />
+          Nfl ticket 7</p>
+        <div class="separatore clearfix"></div>
+        <h3 class="customer_list_title"><img src="images/unlike.png" /> Customers like </h3>
+        <p class="pl-30">Poor customer service 92<br />
+          Customer service 75<br />
+          Lack of service 38 </p>
+      </div>
+      <div class="col-sm-2">
+        <h3 class="text-center rating_title ">2.5</h3>
+        <div class="rating_bulb"><img src="images/rating_bulb.png" /></div>
+        <a data-toggle="modal" data-target="#choose-a-plan" class="respond_customer_btn"> Respond to your customers </a>  </div>
+      <div class="clearfix"></div>
+      <div class="col-md-10 col-md-offset-2 customer_list_footer"> </div>
+    </div>
+    <div class="company_list clearfix">
+      <div class="col-sm-2">
+        <div class="company_logo"><img src="images/company_logo.png" alt="company logo" /></div>
+      </div>
+      <div class="col-sm-5">
+        <h3 class="company_list_title"> Cleco </h3>
+        <p class="company_url">www.abc.com</p>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+      </div>
+      <div class="col-sm-3 customer_feedback">
+        <h3 class="customer_list_title"><img src="images/like.png" /> Customers like </h3>
+        <p class="pl-30">Having tv when it does work 23<br />
+          Picture quality 15<br />
+          Nfl ticket 7</p>
+        <div class="separatore clearfix"></div>
+        <h3 class="customer_list_title"><img src="images/unlike.png" /> Customers like </h3>
+        <p class="pl-30">Poor customer service 92<br />
+          Customer service 75<br />
+          Lack of service 38 </p>
+      </div>
+      <div class="col-sm-2">
+        <h3 class="text-center rating_title ">2.5</h3>
+        <div class="rating_bulb"><img src="images/rating_bulb.png" /></div>
+        <a data-toggle="modal" data-target="#choose-a-plan" class="respond_customer_btn"> Respond to your customers </a>  </div>
+      <div class="clearfix"></div>
+      <div class="col-md-10 col-md-offset-2 customer_list_footer"> </div>
+    </div>
+    <div class="company_list clearfix">
+      <div class="col-sm-2">
+        <div class="company_logo"><img src="images/company_logo.png" alt="company logo" /></div>
+      </div>
+      <div class="col-sm-5">
+        <h3 class="company_list_title"> Cleco </h3>
+        <p class="company_url">www.abc.com</p>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+      </div>
+      <div class="col-sm-3 customer_feedback">
+        <h3 class="customer_list_title"><img src="images/like.png" /> Customers like </h3>
+        <p class="pl-30">Having tv when it does work 23<br />
+          Picture quality 15<br />
+          Nfl ticket 7</p>
+        <div class="separatore clearfix"></div>
+        <h3 class="customer_list_title"><img src="images/unlike.png" /> Customers like </h3>
+        <p class="pl-30">Poor customer service 92<br />
+          Customer service 75<br />
+          Lack of service 38 </p>
+      </div>
+      <div class="col-sm-2">
+        <h3 class="text-center rating_title ">2.5</h3>
+        <div class="rating_bulb"><img src="images/rating_bulb.png" /></div>
+        <a data-toggle="modal" data-target="#choose-a-plan" class="respond_customer_btn"> Respond to your customers </a>  </div>
+      <div class="clearfix"></div>
+      <div class="col-md-10 col-md-offset-2 customer_list_footer"> </div>
+    </div>
+    <div class="company_list clearfix">
+      <div class="col-sm-2">
+        <div class="company_logo"><img src="images/company_logo.png" alt="company logo" /></div>
+      </div>
+      <div class="col-sm-5">
+        <h3 class="company_list_title"> Cleco </h3>
+        <p class="company_url">www.abc.com</p>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+      </div>
+      <div class="col-sm-3 customer_feedback">
+        <h3 class="customer_list_title"><img src="images/like.png" /> Customers like </h3>
+        <p class="pl-30">Having tv when it does work 23<br />
+          Picture quality 15<br />
+          Nfl ticket 7</p>
+        <div class="separatore clearfix"></div>
+        <h3 class="customer_list_title"><img src="images/unlike.png" /> Customers like </h3>
+        <p class="pl-30">Poor customer service 92<br />
+          Customer service 75<br />
+          Lack of service 38 </p>
+      </div>
+      <div class="col-sm-2">
+        <h3 class="text-center rating_title ">2.5</h3>
+        <div class="rating_bulb"><img src="images/rating_bulb.png" /></div>
+        <a data-toggle="modal" data-target="#choose-a-plan" class="respond_customer_btn"> Respond to your customers </a>  </div>
+      <div class="clearfix"></div>
+      <div class="col-md-10 col-md-offset-2 customer_list_footer"> </div>
+    </div>
+    <div class="company_list clearfix">
+      <div class="col-sm-2">
+        <div class="company_logo"><img src="images/company_logo.png" alt="company logo" /></div>
+      </div>
+      <div class="col-sm-5">
+        <h3 class="company_list_title"> Cleco </h3>
+        <p class="company_url">www.abc.com</p>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+      </div>
+      <div class="col-sm-3 customer_feedback">
+        <h3 class="customer_list_title"><img src="images/like.png" /> Customers like </h3>
+        <p class="pl-30">Having tv when it does work 23<br />
+          Picture quality 15<br />
+          Nfl ticket 7</p>
+        <div class="separatore clearfix"></div>
+        <h3 class="customer_list_title"><img src="images/unlike.png" /> Customers like </h3>
+        <p class="pl-30">Poor customer service 92<br />
+          Customer service 75<br />
+          Lack of service 38 </p>
+      </div>
+      <div class="col-sm-2">
+        <h3 class="text-center rating_title ">2.5</h3>
+        <div class="rating_bulb"><img src="images/rating_bulb.png" /></div>
+        <a data-toggle="modal" data-target="#choose-a-plan" class="respond_customer_btn"> Respond to your customers </a>  </div>
+      <div class="clearfix"></div>
+      <div class="col-md-10 col-md-offset-2 customer_list_footer">
+        <div class="col-sm-1"> <strong>23</strong> Issues<br />
+          Resolved </div>
+      </div>
+    </div>
+    <div class="company_list clearfix">
+      <div class="col-sm-2">
+        <div class="company_logo"><img src="images/company_logo.png" alt="company logo" /></div>
+      </div>
+      <div class="col-sm-5">
+        <h3 class="company_list_title"> Cleco </h3>
+        <p class="company_url">www.abc.com</p>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+      </div>
+      <div class="col-sm-3 customer_feedback">
+        <h3 class="customer_list_title"><img src="images/like.png" /> Customers like </h3>
+        <p class="pl-30">Having tv when it does work 23<br />
+          Picture quality 15<br />
+          Nfl ticket 7</p>
+        <div class="separatore clearfix"></div>
+        <h3 class="customer_list_title"><img src="images/unlike.png" /> Customers like </h3>
+        <p class="pl-30">Poor customer service 92<br />
+          Customer service 75<br />
+          Lack of service 38 </p>
+      </div>
+      <div class="col-sm-2">
+        <h3 class="text-center rating_title ">2.5</h3>
+        <div class="rating_bulb"><img src="images/rating_bulb.png" /></div>
+        <a data-toggle="modal" data-target="#choose-a-plan" class="respond_customer_btn"> Respond to your customers </a>  </div>
+      <div class="clearfix"></div>
+      <div class="col-md-10 col-md-offset-2 customer_list_footer"> </div>
+    </div>
+  </div>
+</div>
+<!-- main-content -->
+<!-- footer-->
+<footer>
+  <div class="ipccf_footer">
+    <div class="container">
+      <h1 class="text-center">I Hate Power Companies Consumer Facts</h1>
+      <div class="col-lg-4 text-center">
+        <h2>500K</h2>
+        <span>Reviews </span> </div>
+      <div class="col-lg-4 text-center">
+        <h2>53K</h2>
+        <span>Companies </span> </div>
+      <div class="col-lg-4 text-center">
+        <h2> 127 </h2>
+        <span>Industries </span> </div>
+    </div>
+  </div>
+  <div class="footer-sitemap" id="footer-sitemap">
+    <div class="container">
+      <div class="col-lg-3">
+        <h3>About Us</h3>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">News</a></li>
+          <li><a href="#">We In Press</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms Of Use</a></li>
+          <li><a href="#">Legal Information</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h3>Browse</h3>
+        <ul>
+          <li><a href="#">Companies</a></li>
+          <li><a href="#">Reviews</a></li>
+          <li><a href="#">Featured Reviews</a></li>
+          <li><a href="#">Categories</a></li>
+          <li><a href="#">Most Complained About Companies</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h3>Services</h3>
+        <ul>
+          <li><a href="#">Business Solutions</a></li>
+          <li><a href="#">Our Research</a></li>
+          <li><a href="#">We In Press</a></li>
+          <li><a href="#">Dispute Resolution (LVP Program)</a></li>
+        </ul>
+        <div class="newsletter_footer">
+          <h4>Get our latest updates!</h4>
+          <div class="input-group">
+            <input type="email" class="form-control" placeholder="Enter email" />
+            <span class="input-group-btn">
+            <button class="btn btn-theme-newsletter" type="submit">SUBMIT</button>
+            </span> </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <h3>Tips and Samples</h3>
+        <ul>
+          <li><a href="#">Consumer Tips</a></li>
+          <li><a href="#">Consumer Resources</a></li>
+          <li><a href="#">Complaint Letter Sample</a></li>
+          <li><a href="#">Class Actions</a></li>
+        </ul>
+        <div class="newsletter_footer">
+          <h4>Get SOCIAL WITH US</h4>
+          <ul class="social-network social-circle">
+            <li><a href="#" class="" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#" class="" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#" class="" title="Rss"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+            <li><a href="#" class="" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+            <li><a href="#" class="" title="instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+            <li><a href="#" class="" title="pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="policy-text"> I Hate Power Companies &copy; 2017 All Rights Reserved </div>
+  
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+
+<div class="modal fade ihpc-modal" id="choose-a-plan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header" style="border-bottom: 0;">
+                <button type="button" class="close" data-dismiss="modal">
+                       <span aria-hidden="true">×</span>
+                       <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Do not know what plan to choose?</h4>
+<span class="modal-small-title">Fill out the form and we will contact you.</span>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">                
+                <form role="form">  
+                  <div class="form-group col-sm-6">
+                    <label for="exampleInputEmail1">Email <span class="required">*</span></label>
+                      <input class="form-control" id="exampleInputEmail1" placeholder="" type="email">
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <label for="exampleInputPassword1">Phone</label>
+                      <input class="form-control" id="exampleInputPassword1" placeholder="" type="text">
+                  </div><div class="form-group col-sm-6">
+                    <label for="exampleInputPassword1">Your Full Name <span class="required">*</span></label>
+                      <input class="form-control" id="exampleInputPassword1" placeholder="" type="text">
+                  </div><div class="form-group col-sm-6">
+                    <label for="exampleInputPassword1">Corporate Title</label>
+                      <input class="form-control" id="exampleInputPassword1" placeholder="" type="text">
+                  </div><div class="form-group col-sm-6">
+                    <label for="exampleInputPassword1">Company Name <span class="required">*</span></label>
+                      <input class="form-control" id="exampleInputPassword1" placeholder="" type="text">
+                  </div>
+                  <div class="clearfix"></div>  
+                </form>
+            </div>
+            
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn" data-dismiss="modal">
+                            CANCEL
+                </button>
+                <button type="button" class="btn modal-footer-btn">
+                    SUBMIT                
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</footer>
+<!-- footer-->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>	
+</body>
+</html>
