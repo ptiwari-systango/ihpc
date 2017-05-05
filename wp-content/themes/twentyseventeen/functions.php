@@ -24,14 +24,14 @@ if ( version_compare( $GLOBALS['wp_version'], '4.7-alpha', '<' ) ) {
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
-function ihpc_setup() {
+function twentyseventeen_setup() {
 	/*
 	 * Make theme available for translation.
 	 * Translations can be filed at WordPress.org. See: https://translate.wordpress.org/projects/wp-themes/twentyseventeen
 	 * If you're building a theme based on Twenty Seventeen, use a find and replace
 	 * to change 'twentyseventeen' to the name of your theme in all the template files.
 	 */
-	load_theme_textdomain( 'ihpc' );
+	load_theme_textdomain( 'twentyseventeen' );
 
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
@@ -214,7 +214,7 @@ function ihpc_setup() {
 
 	add_theme_support( 'starter-content', $starter_content );
 }
-add_action( 'after_setup_theme', 'ihpc_setup' );
+add_action( 'after_setup_theme', 'twentyseventeen_setup' );
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -440,7 +440,7 @@ function twentyseventeen_scripts() {
 	);
 
 	if ( has_nav_menu( 'top' ) ) {
-		wp_enqueue_script( 'twentyseventeen-navigation', get_theme_file_uri( '/assets/js/navigation.js' ), array(), '1.0', true );
+		wp_enqueue_script( 'twentyseventeen-navigation', get_theme_file_uri( '/assets/js/navigation.js' ), array( 'jquery' ), '1.0', true );
 		$twentyseventeen_l10n['expand']         = __( 'Expand child menu', 'twentyseventeen' );
 		$twentyseventeen_l10n['collapse']       = __( 'Collapse child menu', 'twentyseventeen' );
 		$twentyseventeen_l10n['icon']           = twentyseventeen_get_svg( array( 'icon' => 'angle-down', 'fallback' => true ) );
@@ -449,8 +449,6 @@ function twentyseventeen_scripts() {
 	wp_enqueue_script( 'twentyseventeen-global', get_theme_file_uri( '/assets/js/global.js' ), array( 'jquery' ), '1.0', true );
 
 	wp_enqueue_script( 'jquery-scrollto', get_theme_file_uri( '/assets/js/jquery.scrollTo.js' ), array( 'jquery' ), '2.1.2', true );
-	
-	wp_enqueue_script( 'bootstrap', get_theme_file_uri( '/assets/js/jquery.scrollTo.js' ), array( 'jquery' ), '2.1.2', true );
 
 	wp_localize_script( 'twentyseventeen-skip-link-focus-fix', 'twentyseventeenScreenReaderText', $twentyseventeen_l10n );
 
