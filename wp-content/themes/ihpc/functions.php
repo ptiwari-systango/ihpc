@@ -672,3 +672,12 @@ function archive_company_filter(){
 	}
 
 }
+
+//Social Login FB,Google,Twitter
+add_action( 'wp_ajax_ihpc_social_login', 'ihpc_social_login' );
+add_action( 'wp_ajax_nopriv_ihpc_social_login', 'ihpc_social_login' );
+function ihpc_social_login(){
+	print_r($_POST);
+
+	wp_die();
+}
