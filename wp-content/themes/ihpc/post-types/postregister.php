@@ -1,7 +1,7 @@
 <?php
 /**
  * Registered new custom post types
- * User: Dharmendra Singh
+ * User: Systango
  * Date: 26/4/17
  * Time: 5:48 PM
  */
@@ -13,7 +13,7 @@ function cptui_register_my_cpts_review() {
      */
 
     $labels = array(
-        "name" => __( 'Review', 'ihpc' ),
+        "name" => __( 'Browse Complaints and Reviews', 'ihpc' ),
         "singular_name" => __( 'Review', 'ihpc' ),
         "menu_name" => __( 'Review', 'ihpc' ),
         "all_items" => __( 'All Reviews', 'ihpc' ),
@@ -31,7 +31,7 @@ function cptui_register_my_cpts_review() {
         "set_featured_image" => __( 'Set featured image', 'ihpc' ),
         "remove_featured_image" => __( 'Remove featured image', 'ihpc' ),
         "use_featured_image" => __( 'Use featured image', 'ihpc' ),
-        "archives" => __( 'Review Archives', 'ihpc' ),
+        "Archives" => __( 'Review Archives', 'ihpc' ),
         "insert_into_item" => __( 'Insert into review', 'ihpc' ),
         "uploaded_to_this_item" => __( 'Uploaded to this review', 'ihpc' ),
         "filter_items_list" => __( 'Filter review list', 'ihpc' ),
@@ -60,7 +60,7 @@ function cptui_register_my_cpts_review() {
         "set_featured_image" => __( 'Set featured image', 'ihpc' ),
         "remove_featured_image" => __( 'Remove featured image', 'ihpc' ),
         "use_featured_image" => __( 'Use featured image', 'ihpc' ),
-        "archives" => __( 'Review Archives', 'ihpc' ),
+        "Archives" => __( 'Review Archives', 'ihpc' ),
         "insert_into_item" => __( 'Insert into companies', 'ihpc' ),
         "uploaded_to_this_item" => __( 'Uploaded to this company', 'ihpc' ),
         "filter_items_list" => __( 'Filter companies list', 'ihpc' ),

@@ -11,7 +11,6 @@
  */
 
 ?>
-
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <?php
     if ( is_sticky() && is_home() ) :
@@ -37,21 +36,31 @@
             the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
         }
         ?>
+		<ul class="review-fields">
+		  <li><span class="billet from-mobile">From mobile</span></li>
+		  <li class="normal-size"> <i class="fa fa-building-o" aria-hidden="true"></i> <a href="#"> <span itemprop="name">Rosewe</span> </a> </li>
+		  <li><i class="fa fa-clock-o" aria-hidden="true"></i> <span class="fs12"> 44 minutes ago </span></li>
+		  <li> <i class="fa fa-user" aria-hidden="true"></i> <span class="fs12">by </span><span class="fs12">anonymous</span> </li>
+		  <li>#1044757</li>
+		</ul>
+
+		
+		
     </header><!-- .entry-header -->
 
     <?php if ( '' !== get_the_post_thumbnail() && ! is_single() ) : ?>
-        <div class="post-thumbnail">
+        <div class="post-thumbnail col-sm-2">
             <a href="<?php the_permalink(); ?>">
                 <?php the_post_thumbnail( 'ihpc-featured-image' ); ?>
             </a>
         </div><!-- .post-thumbnail -->
     <?php endif; ?>
 
-    <div class="entry-content">
+    <div class="entry-content col-sm-10">
         <?php
         /* translators: %s: Name of current post */
         the_content( sprintf(
-            __( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'ihpc' ),
+            __( 'Read More... ', 'ihpc' ),
             get_the_title()
         ) );
 
@@ -62,10 +71,18 @@
             'link_after'  => '</span>',
         ) );
         ?>
-    </div><!-- .entry-content -->
+		<a href="#" class="add-comment"> Add comment</a>
+		
+		<div class="clearfix"></div>
+		
+    </div>
+	<div class="was-this-review-needfull col-sm-12">
+  	  <span>Was this review helpful?</span>		
+	</div>
 
+	<!-- .entry-content -->
     <?php if ( is_single() ) : ?>
         <?php ihpc_entry_footer(); ?>
     <?php endif; ?>
-
+<div class="clearfix"></div>
 </article><!-- #post-## -->

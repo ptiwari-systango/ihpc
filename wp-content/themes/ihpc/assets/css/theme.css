@@ -371,3 +371,341 @@ a.socialIcon:hover, .socialHoverClass {
 	font-size:13px;
 	line-height:60px;
 }
+
+/* inner-page */
+.inner-page{ 
+	padding-top:113px;
+}
+.inner-page .search-box{
+	margin-top:5px;
+	margin-bottom:5px;
+}
+.inner-page .search-for-car{
+	width:100%;
+}
+.inner-page .search-for-car .inner-search{
+	width:93.4%;
+}
+.inner-page .search-box label{
+	font-weight:300;
+	font-size:16px;
+}
+.inner-page .red_bold{
+	color:#e2001a;
+    font-family: 'Roboto Slab', serif;
+	font-size:18px;
+}
+.rating_bulb{ text-align:center;}
+.respond_customer_btn{ 
+	background: #e2001a;
+	color: #fff;
+	text-align: center;
+	margin-top: 25px;
+	padding:3px 5px;
+	display:block;
+	text-transform:uppercase;	
+	margin-right:-15px;
+	cursor:pointer;
+
+}
+.respond_customer_btn:hover, .respond_customer_btn:active, .respond_customer_btn:focus{
+	color: #fff;
+	text-decoration:none;
+	background:#ec021d;
+}
+.company_list{
+	min-height:370px;
+	padding-top:22px;
+	padding-bottom:22px;	
+	margin-bottom:18px;
+	margin-top:18px;
+	-webkit-box-shadow: 0 0 2px 2px rgba(140, 140, 140, 0.3);
+	box-shadow: 0 0 2px 2px rgba(140, 140, 140, 0.3);
+	color:#1e1e1e;
+	font-size:15px;
+	font-weight:300;
+ font-family: 'Roboto';	
+}
+.company_list p{
+	color:#1e1e1e;
+	font-size:15px;
+	 font-family: 'Roboto';	
+	font-weight:300;
+
+}
+.company_list .company_list_title{
+	color:#e2001a;
+	font-size:30px;
+	font-family: 'Roboto Slab', serif;
+	font-weight:700;	
+	margin-top:0px;
+	margin-bottom:6px;
+}
+.company_list .company_logo {
+    width: 165px;
+	object-fit: cover;
+    height: 165px;
+    border: 3px #eeeeee solid;
+	text-align:center;
+}
+.company_list .company_logo img{ max-width:100%; object-fit: cover; max-height:100%;}
+
+.company_list .company_url {
+    color: #4d4d4d;
+    font-size: 16px;
+}
+.customer_feedback , .customer_feedback p{
+	color:#4d4d4d;
+	font-size:15px;
+	line-height:24px;
+}
+
+.company_list h3.customer_list_title{
+	font-family: 'Roboto Slab', serif;
+	font-weight:700;	
+	color:#1e1e1e;
+	font-size:17px;
+	margin-top:0px;
+	margin-bottom:5px;
+}
+.pl-30{ padding-left:30px;}
+.rating_title {
+	color:#4d4d4d;
+	font-size:30px;
+	font-family: 'Roboto Slab', serif;
+	font-weight:700;
+	margin-top:0px;
+		
+}
+.customer_list_footer{ 
+	border-top:1px solid #adadad;
+	padding-top:10px;
+	}
+.c_l_f_resolved strong{
+	color:#e2001a;
+	font-size:19px;
+	font-family: 'Roboto Slab', serif;	
+}
+.c_l_f_resolved{
+	color:#e2001a;
+	text-align:center;
+}
+.modal{
+	z-index:9999999;
+}
+
+.ihpc-modal .modal-dialog{
+	width: 945px;
+}
+.ihpc-modal .modal-content{
+	box-shadow: none;
+	-webkit-box-shadow: none;
+	border-radius:0;
+	border:0px;
+}
+.ihpc-modal .modal-header{
+	border-bottom: 0;
+}
+.ihpc-modal .modal-footer{
+	border-top: 0;
+	background:#f0f0f0;
+}
+.ihpc-modal .form-control{
+	box-shadow: none;
+	-webkit-box-shadow: none;
+	border-radius:0;
+	height: 50px;	
+	border: 2px solid #757575;
+}
+.ihpc-modal label{
+	font-weight:normal;
+	color:#1e1e1e;
+	font-size:18px;
+}
+.ihpc-modal .modal-header{ 
+ 	padding:15px 30px;
+}
+.ihpc-modal .modal-header > h4{
+	color:#1e1e1e;
+	font-size:24px;
+	font-family: 'Roboto Slab', serif;	
+	font-weight:700;
+}
+.ihpc-modal .modal-header > .modal-small-title{
+	font-size:14px;
+	color:#4d4d4d;
+}
+.ihpc-modal .form-group{
+	margin-bottom:20px;
+}
+.required{
+	color: #e2001a;
+	margin-left:-2px;
+}
+.modal-footer-btn {
+    background: #e2001a;
+    border: 0;
+    border-radius: 0;
+    color: #fff;
+    min-width: 140px;
+}
+.modal-footer-btn:hover , .modal-footer-btn:active , .modal-footer-btn:focus{
+  color:#FFFFFF;
+  background:#c90118;	
+}
+
+.ihpc-modal .search-box{ 
+	margin:0px;
+}
+.ihpc-modal .search-box .form-control{
+	height: 52px;
+	border: none;
+}
+.ihpc-modal .search-for-car .inner-search{
+	width: 91.6%;
+}
+.modal-backdrop{
+	z-index:999999;
+}
+.modal-backdrop.in{
+	opacity: .7;
+	filter: alpha(opacity=70);
+}
+.address{
+	color:#4d4d4d;
+	font-size:14px;
+	margin:8px 0;
+	display:block;
+	
+}
+
+
+/*sub-header*/
+
+.sub-header{
+	background:#1e1e1e;
+	min-height:175px;
+	margin-top:-10px;
+	color:#FFFFFF;
+	padding:48px 0;
+	padding-bottom:0px;
+	
+}
+.sub-header h1{
+	color:#FFFFFF;
+	margin:0px;
+	margin-bottom:20px;
+	font-size:29px;
+	padding:0px;
+}
+.telecommunications {
+    margin-top: 18px;
+}
+
+
+/* review page */  
+
+#review_page .entry-title > a {
+    color: #e2001a;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: 'Roboto Slab', serif;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+#review_page .post-thumbnail{
+	width:120px;
+	height:90px;
+	padding-left:0px;
+	padding-right:0px;
+}
+#review_page .post-thumbnail img{
+	width:100%;
+	height:100%;
+    object-fit: cover;
+}
+#review_page .entry-content{
+	color:#4d4d4d;
+	font-size:16px;
+
+}
+ul.review-fields {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+	min-height:40px;
+}
+.review-fields li {
+    display: inline-block;
+    color: #4d4d4d;
+    margin-right: 20px;
+    font-size: 16px;
+}
+.review-fields li a{
+	color:#4d4d4d;
+	text-decoration:none
+}
+.review-fields li a:hover{
+color:#e2001a;
+}
+.review-fields li i{
+color:#757575;
+margin-right:3px;
+}
+.fs12{
+	font-size:12px;
+}
+#review_page .review {
+    border-bottom: 1px solid #adadad;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+}
+#review_page .page-header{ 
+	margin:0px;
+	padding:0px;
+	border:0px;
+}
+span.billet.from-mobile {
+    background: #dcdcdc;
+    font-size: 14px;
+    display: block;
+    padding: 4px 10px;
+    position: relative;
+    top: -1px;
+}
+
+#review_page .review .more-link, .add-comment{
+color:#e2001a;
+font-size:18px;
+font-weight:600
+;
+text-decoration:none;
+margin-top:6px;
+display:inline-block;
+}
+#review_page .review .more-link:hover,  .add-comment:hover{
+color:#4d4d4d;
+}
+.add-comment{
+	background:url(../images/comment-icon.png) no-repeat;
+	text-decoration:none !important;
+	display:inline-block;
+    padding-left: 31px;
+    background-position: 0px 3px;
+	    -o-transition: all 0s ease-in-out;
+    -moz-transition: all 0s ease-in-out;
+    -webkit-transition: all 0s ease-in-out;
+    transition: all 0s ease-in-out;
+	margin-top:0px;
+}
+.add-comment:hover{
+    background-position:0px -25px;
+	color:#757575;
+}
+.was-this-review-needfull{
+    padding: 16px 0;
+    clear: both;
+    font-weight: 100;
+    padding-bottom: 0;
+}

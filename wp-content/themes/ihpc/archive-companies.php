@@ -11,9 +11,6 @@
  */
 
 get_header(); ?>
-
-
-
 	<?php if ( have_posts() ) : ?>
 		<h1>Browse Companies</h1>
 	<?php endif; ?>
@@ -73,8 +70,8 @@ get_header(); ?>
 $args = array('hide_empty' => FALSE,'taxonomy' => 'companiestax');
 
 $terms = get_terms($args);
-echo '<pre>';
-print_r($terms);
+//echo '<pre>';
+//print_r($terms);
 
 ?>
 

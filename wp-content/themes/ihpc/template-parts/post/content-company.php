@@ -47,7 +47,6 @@
             </div><!-- .post-thumbnail -->
         <?php endif; ?>
     </div>
-
     <div class="col-sm-5">
        <a href="<?php echo esc_url(get_permalink()); ?>"><h3 class="company_list_title"><?php echo get_the_title(); ?> </h3></a>
         <?php  $company_website = get_field( "company_website" );  ?>
@@ -90,7 +89,7 @@
         $category_detail = get_the_category();
         if($category_detail){ ?>
             <div class="col-sm-4 text-center telecommunications"> <img src="<?php echo get_template_directory_uri(); ?>/assets/images/telecommunications.png"> <?php foreach($category_detail as $cd){
-                    echo $cd->cat_name .'<br>';
+                    echo $cd->cat_name .'';
                 }?>
             </div>
         <?php  } ?>

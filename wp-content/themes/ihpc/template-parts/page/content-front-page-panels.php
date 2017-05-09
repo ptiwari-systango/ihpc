@@ -40,7 +40,7 @@ global $ihpccounter;
 				<?php
 					/* translators: %s: Name of current post */
 					the_content( sprintf(
-						__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'ihpc' ),
+						__( 'Continue reading <span class="screen-reader-text"> "%s"</span>', 'ihpc' ),
 						get_the_title()
 					) );
 				?>

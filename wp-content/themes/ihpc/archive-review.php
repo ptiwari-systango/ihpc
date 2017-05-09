@@ -11,9 +11,8 @@
  */
 
 get_header(); ?>
-
-<div class="wrap">
-
+<div class="col-lg-9">
+<div class="wrap" id="review_page">
 	<?php if ( have_posts() ) : ?>
 		<header class="page-header">
 			<?php
@@ -25,7 +24,6 @@ get_header(); ?>
 	<?php echo $count = $GLOBALS['wp_query']->post_count; ?>
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
-
 		<?php
 		if ( have_posts() ) : ?>
 			<?php
@@ -59,13 +57,16 @@ get_header(); ?>
 	<?php
 	$args = array('hide_empty' => FALSE,'taxonomy' => 'reviewtax');
 
-	$terms = get_terms($args);
-	echo '<pre>';
-	print_r($terms);
+//	$terms = get_terms($args);
+//	echo '<pre>';
+//	print_r($terms);
 
 	?>
+</div>
 
+<div class="col-lg-3">
 	<?php get_sidebar(); ?>
+	</div>
 </div><!-- .wrap -->
 
-<?php get_footer();
+<?php get_footer(); ?>

@@ -64,4 +64,4 @@ get_header(); ?>
 	<?php get_sidebar(); ?>
 </div><!-- .wrap -->
 
-<?php get_footer(); 
+<?php get_footer(); ?>

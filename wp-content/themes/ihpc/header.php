@@ -27,7 +27,7 @@ global $redux_ihpc;
     ?>
   </script>
 </head>
-<body <?php body_class( ! is_home() ? "ihpc" : "Prashant" ); ?>>
+<body <?php body_class( is_front_page() ? "home" : "inner-page ihpc" ); ?>>
 <?php
 if(isset($redux_ihpc['intro_h1_text'])){
   $introh1text = $redux_ihpc['intro_h1_text'];
@@ -42,7 +42,12 @@ else{
   $introh3text = "Find your power company and share your story of why you hate them. Simple. <br> Together, we can change the way these companies do business.";
 }
 ?>
-<div class="top_header navbar-fixed-top sticky-header">
+<?php if(is_front_page()){
+	$navclass= "";
+} else{
+	$navclass ="fixed";
+} ?>
+<div class="top_header navbar-fixed-top sticky-header <?php echo $navclass; ?>">
   <nav class="navbar">
     <div class="container-fluid">
       <div class="col-lg-3">
