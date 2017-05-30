@@ -12,7 +12,8 @@
  * @version 1.0
  */
 global $redux_ihpc;
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html <?php language_attributes(); ?> class="no-js no-svg">
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
@@ -42,12 +43,14 @@ else{
   $introh3text = "Find your power company and share your story of why you hate them. Simple. <br> Together, we can change the way these companies do business.";
 }
 ?>
-<?php if(is_front_page()){
+<?php 
+/*if(is_front_page()){
 	$navclass= "";
 } else{
 	$navclass ="fixed";
-} ?>
-<div class="top_header navbar-fixed-top sticky-header <?php echo $navclass; ?>">
+} */
+?>
+<div class="top_header navbar-fixed-top sticky-header <?php //echo $navclass; ?> fixed">
   <nav class="navbar">
     <div class="container-fluid">
       <div class="col-lg-3">
@@ -67,36 +70,38 @@ else{
   <div class="container">
     <h1 class="text-center"><?php echo $introh1text; ?></h1>
     <div class="search-box row">
-      <form class="clearfix">
-        <div class="search-for-car clearfix">
-          <div class="inner-search">
-            <div class="col-lg-4 col-md-4 separator col-sm-4 col-xs-12">
-              <input name="company_name" id="company_name" class="form-control search-input width-100" placeholder="Company Name" value="" type="text">
-            </div>
-            <div class="col-lg-4 col-md-4 separator model-select col-sm-4 col-xs-12">
-              <input name="location" id="location" class="form-control search-input width-100" placeholder="Location" value="" type="text">
-            </div>
-            <div class="col-lg-4 col-md-4  col-sm-4 col-xs-12">
-              <select name="model" id="model" class="form-control">
-                <?php
-                $args = array('hide_empty' => FALSE,'taxonomy' => 'companiestax');
-                $terms = get_terms($args);
-                foreach($terms as $termsval){
-                  echo '<option value="'. $termsval->term_id .'">'.$termsval->name .'</option>';
-                }
-                ?>
-              </select>
-            </div>
+
+    <form action="<?php echo site_url('companies') ?>" method="post" class="clearfix">
+      <div class="search-for-car clearfix">
+        <div class="inner-search">
+          <div class="col-lg-4 col-md-4 separator col-sm-4 col-xs-12">
+            <input name="company_name" id="company_name" class="form-control search-input width-100" placeholder="Company Name" value="" type="text">
           </div>
-          <input value="" class="btn-style inner-search-button " type="submit">
+          <div class="col-lg-4 col-md-4 separator model-select col-sm-4 col-xs-12">
+            <input name="location" id="location" class="form-control search-input width-100" placeholder="Location" value="" type="text">
+          </div>
+          <div class="col-lg-4 col-md-4  col-sm-4 col-xs-12">
+            <select name="model" id="model" class="form-control">
+              <?php
+              $args   = array('hide_empty' => FALSE,'taxonomy' => 'companiestax');
+              $terms  = get_terms($args);
+              foreach($terms as $termsval){
+                echo '<option value="'. $termsval->term_id .'">'.$termsval->name .'</option>';
+              }
+              ?>
+            </select>
+          </div>
         </div>
-      </form>
+        <input value="" class="btn-style inner-search-button " type="submit">
+      </div>
+    </form>
+
     </div>
     <h3 class="text-center"><?php echo $introh3text; ?></h3>
     <div class="home_button_sectation">
       <div class="col-lg-4"> <a href="#" class="btn theme_btn"><img src="<?php bloginfo('template_url'); ?>/assets/images/icon_submit_review.png"> submit review</a> </div>
-      <div class="col-lg-4"> <a href="#" class="btn theme_btn"><img src="<?php bloginfo('template_url'); ?>/assets/images/icon_explore_l_reviews.png"> Explore latest reviews</a> </div>
-      <div class="col-lg-4"> <a href="/for-business" class="btn theme_btn"><img src="<?php bloginfo('template_url'); ?>/assets/images/icon_f_business.png"> For Business</a> </div>
+      <div class="col-lg-4"> <a href="<?php echo site_url('review') ?>" class="btn theme_btn"><img src="<?php bloginfo('template_url'); ?>/assets/images/icon_explore_l_reviews.png"> Explore latest reviews</a> </div>
+      <div class="col-lg-4"> <a href="<?php echo site_url('for-business') ?>" class="btn theme_btn"><img src="<?php bloginfo('template_url'); ?>/assets/images/icon_f_business.png"> For Business</a> </div>
     </div>
   </div>
 </div>

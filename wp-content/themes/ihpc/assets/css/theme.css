@@ -15,6 +15,7 @@ h1, .h1, h2, .h2, h3, .h3{
 }
 .navbar-brand{ 
 	padding:0px;
+	height:auto;
 }
 .top_header .navbar-nav > li > a{
 	margin-top:32px;
@@ -24,7 +25,7 @@ h1, .h1, h2, .h2, h3, .h3{
 	padding-top:7px;
 	padding-bottom:7px;
 	border:0px;
-	background:transparent;
+	background:transparent;0
 	
 }
 .top_header.navbar-fixed-top.sticky-header.fixed {
@@ -60,8 +61,8 @@ h1, .h1, h2, .h2, h3, .h3{
 .top_header .navbar-nav > li.top_submit_review a{
 	background:#e2001a;
 	color:#FFFFFF;
-	margin-left:68px;
-	margin-right:68px;
+	margin-left:15px;
+	margin-right:15px;
 }
 .top_header .navbar-nav > li.top_submit_review a:hover{
 	background:#f5223a;
@@ -372,9 +373,10 @@ a.socialIcon:hover, .socialHoverClass {
 	line-height:60px;
 }
 
+
 /* inner-page */
 .inner-page{ 
-	padding-top:113px;
+	padding-top:105px;
 }
 .inner-page .search-box{
 	margin-top:5px;
@@ -419,8 +421,8 @@ a.socialIcon:hover, .socialHoverClass {
 	padding-bottom:22px;	
 	margin-bottom:18px;
 	margin-top:18px;
-	-webkit-box-shadow: 0 0 2px 2px rgba(140, 140, 140, 0.3);
-	box-shadow: 0 0 2px 2px rgba(140, 140, 140, 0.3);
+	-webkit-box-shadow: 1px 2px 5px rgba(140, 140, 140, 0.3);
+	box-shadow: 1px 2px 5px rgba(140, 140, 140, 0.3);
 	color:#1e1e1e;
 	font-size:15px;
 	font-weight:300;
@@ -443,12 +445,11 @@ a.socialIcon:hover, .socialHoverClass {
 }
 .company_list .company_logo {
     width: 165px;
-	object-fit: cover;
     height: 165px;
     border: 3px #eeeeee solid;
 	text-align:center;
 }
-.company_list .company_logo img{ max-width:100%; object-fit: cover; max-height:100%;}
+.company_list .company_logo img{ max-width:100%;}
 
 .company_list .company_url {
     color: #4d4d4d;
@@ -477,10 +478,7 @@ a.socialIcon:hover, .socialHoverClass {
 	margin-top:0px;
 		
 }
-.customer_list_footer{ 
-	border-top:1px solid #adadad;
-	padding-top:10px;
-	}
+.customer_list_footer{ border-top:1px solid #adadad;}
 .c_l_f_resolved strong{
 	color:#e2001a;
 	font-size:19px;
@@ -496,6 +494,7 @@ a.socialIcon:hover, .socialHoverClass {
 
 .ihpc-modal .modal-dialog{
 	width: 945px;
+	max-width:100%;
 }
 .ihpc-modal .modal-content{
 	box-shadow: none;
@@ -584,26 +583,292 @@ a.socialIcon:hover, .socialHoverClass {
 
 .sub-header{
 	background:#1e1e1e;
-	min-height:175px;
-	margin-top:-10px;
+	min-height:177px;
 	color:#FFFFFF;
-	padding:48px 0;
-	padding-bottom:0px;
-	
+	padding: 40px 0 0;	
 }
 .sub-header h1{
 	color:#FFFFFF;
 	margin:0px;
-	margin-bottom:20px;
-	font-size:29px;
+	margin-bottom:17px;
+	font-size:30px;
 	padding:0px;
+	font-weight:600;
 }
-.telecommunications {
-    margin-top: 18px;
+.sub-header p{
+	line-height:20px;
 }
 
+/*** Login ***/
 
-/* review page */  
+.connect_with_social {
+	border-bottom: 1px solid #b1b1b1;
+	height: 13px;
+}
+.connect_with_social span {
+	font-size:18px;
+	color:#1e1e1e;
+	padding: 0 11px;
+	background:#fff;
+}
+.pt-40 {
+	padding-top:40px !important;
+}
+.social_button {
+    margin-top: 36px;
+	padding:0px;
+	margin-bottom: 25px;
+}
+.social_button li{
+	display:inline-block;
+}
+.social_button li a{
+	width:160px;
+	height:46px;
+	margin-right: 25px;
+	display:inline-block;
+	text-align: center;
+	font-weight: 500;
+	color: #ffffff;
+	padding-top: 9px;
+	text-decoration:none;
+}
+.social_button li:last-child a{ 
+	margin-right:0px;
+}
+.social_button .facebook a, .social_button .facebook a:focus{
+	background:#4568b2;
+	border:2px solid transparent;
+}
+.social_button .facebook a:hover{
+	border:2px solid #4568b2;
+	color:#4568b2;
+	background:transparent;
+}
+.social_button .twitter a, .social_button .twitter a:focus{
+	background:#00acee;
+	border:2px solid transparent;
+}
+.social_button .twitter a:hover{
+	border:2px solid #00acee;
+	color:#00acee;
+	background:transparent;	
+}
+.social_button .google_plus a, .social_button .google_plus a:focus{
+	background:#cc473d;
+	border:2px solid transparent;
+}
+.social_button .google_plus a:hover{
+	border:2px solid #cc473d;
+	color:#cc473d;
+	background:transparent;
+}
+.social_button .fa{
+	font-size: 26px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+.register_in{ 
+	padding:67px 0px 55px;
+}
+.register_in label, #our_plan label{ 
+	font-size:18px;
+	color:#1e1e1e;
+	font-weight:400;
+}
+.mandatory{
+	color: #e2001a;
+	font-family: "Roboto Slab",sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+}
+.register_in input, #our_plan input{
+	border: 1px solid #757575;
+	color: #1e1e1e;
+	font-size: 18px;
+	height: 50px;
+}
+.mt-20{
+	margin-top:20px !important;
+}
+.mt-40{
+	margin-top:40px !important;
+}
+
+/*checkbox button css */
+.check_mark input[type=checkbox]:not(old){
+	width : 28px;
+	margin : 0;
+	padding : 0;
+	opacity : 0;
+	position:absolute;
+}
+.check_mark input[type=checkbox]:not(old) + label{
+	display: inline-block;
+	padding-left : 33px;
+	background:url(../images/uncheck.png) no-repeat;
+	line-height:24px;
+	height:24px;
+	font-weight:400;
+	cursor:pointer;
+}
+.check_mark input[type=checkbox]:not(old):checked + label{
+	background:url(../images/check.png) no-repeat;
+}
+.register_in .red_link, .register_in .red_link:focus, .red_link, .red_link:focus{
+	font-size:18px;
+	color:#e2001a;
+	text-decoration:none;
+}
+.register_in .red_link:hover, .red_link:hover{
+	color:#aa0014;
+}
+.site_btn, .site_btn:focus{ 
+	background: #e2001a none repeat scroll 0 0;
+    border: 2px solid rgba(0, 0, 0, 0) !important;
+    color: #ffffff !important;
+    display: inline-block;
+    font-size: 16px !important;
+    height: 36px !important;
+    padding-top: 5px;
+    text-align: center;
+    text-decoration: none !important;
+    transition: all 0.3s ease-in-out 0s;
+    width: 164px;
+}
+.top_header .navbar-nav > li.top_submit_review a, .read_more{
+	border:2px solid transparent;
+	padding-top:5px !important;
+	padding-bottom:5px !important;
+}
+.site_btn:hover, .top_header .navbar-nav > li.top_submit_review a:hover, .read_more:hover{
+	border:2px solid #e2001a !important;
+	background: #fff !important;
+	color:#e2001a !important;
+}
+.site_btn:active{
+	text-indent:-2px;
+}
+.register_in .btn-link, .register_in .btn-link:focus, #our_plan .btn-link, #our_plan .btn-link:focus{
+	color: #4d4d4d;
+    font-size: 16px;
+    padding: 7px 30px;
+    vertical-align: top;
+	text-decoration:none;
+}
+.register_in .btn-link:hover, #our_plan .btn-link:hover{
+	color:#e2001a;
+}
+.signup_block{
+	height:80px;
+	background:#f0f0f0;
+	padding: 22px;
+}
+.signup_block .site_btn{ margin-left:30px;}
+.submit_review, .submit_review:focus, .explore_review, .business{ background-image:url(../images/icon_submit_review.png) !important; background-repeat:no-repeat !important; background-position:65px center !important; border:2px solid transparent;}
+.submit_review:hover, .explore_review:hover, .business:hover{  background-image:url(../images/icon_submit_review-red.png) !important; background-repeat:no-repeat !important; background-position:65px center !important; background-color:transparent !important; color:#e2001a !important; border:2px solid #e2001a;}
+.explore_review, .explore_review:focus{background-image:url(../images/icon_explore_l_reviews.png) !important; background-position: 16px center !important;}
+.explore_review:hover{background-image:url(../images/icon_explore_l_reviews-red.png) !important; background-position: 16px center !important;}
+.business, .business:focus{background-image:url(../images/icon_f_business.png) !important; background-position: 80px center !important; padding-left: 60px !important;}
+.business:hover{background-image:url(../images/icon_f_business-red.png) !important; background-position: 80px center !important; padding-left: 60px !important;}
+.theme_btn{ padding:11px 12px 11px 40px;}
+.mb-0{ margin-bottom:0px !important;}
+.mb-10{ margin-bottom:10px !important;}
+.grey { color: #757575; display: block; font-size: 14px;}
+.input-group-btn .dropdown-toggle{padding: 11.3px 12px; border:1px solid #757575; font-size:18px; border-radius:0px;}
+.input-group-btn .dropdown-toggle .caret{border-left: 6px solid rgba(0, 0, 0, 0); border-right: 6px solid rgba(0, 0, 0, 0); border-top: 6px dashed; margin-left: 14px;}
+.font-14{ font-size:14px !important;}
+.mt-15{ margin-top:15px !important;}
+.mt-30{ margin-top:30px !important;}
+.captcha input{ width:125px; float:left;}
+.captcha img{ margin-left: 20px; margin-top: 10px;}
+.mt-70{ margin-top:70px !important;}
+.bold{ font-weight:bold !important;}
+.business_plans{ background:#f0f0f0; border:1px solid #c8c8c8; padding-bottom:60px;}
+.business_plans h2{ color:#e2001a;}
+.business_plans h5{ font-size:20px; color:#4d4d4d; font-weight: 400; line-height:24px;}
+.price_plan { color: #e2001a; font-size: 80px; font-family: "Roboto slab",sans-serif; margin-top:20px;}
+.price_plan sup{ font-size:24px; vertical-align: super;}
+.price_plan span{ font-size:24px; margin-left: -5px;}
+.business_sol > span{ color:#1e1e1e;}
+.business_plans ul{ padding-left:0px; margin-top: 18px; margin-bottom: 55px;}
+.business_plans ul li { color: #1e1e1e; line-height: 36px; list-style: outside none none;}
+.business_plans .site_btn{ min-width: 222px; padding: 5px 17px; width: auto;}
+.get_a_quote{ font-size:36px; color:#1e1e1e; margin-bottom: 37px; margin-top: 40px; font-family: "Roboto slab",sans-serif;}
+.testimonial_slider{ background:#f0f0f0; margin-top:70px; margin-bottom:75px;}
+.testimonial_slider h2{ margin-top:55px;}
+.testimonial_slider .carousel-inner{ margin-top: 50px;}
+.testimonial_slider hr{ border:none; border-bottom:1px solid #c8c8c8;}
+.testimonial_slider .carousel-inner .item p { font-size: 20px; line-height: 24px; margin-bottom:40px;}
+.testimonial_slider .carousel-inner .item p.client{ margin-bottom:30px;}
+.client small { color: #757575; font-size: 16px;}
+.carousel.slide .carousel-control{ width: 60px !important; transform: translateY(-50%); top: 30%; opacity: 1 !important; height: 60px; background: #cfcfcf none repeat scroll 0 0 !important; border: 3px solid #4d4d4d; border-radius: 50%; padding: 11px 0;}
+.carousel.slide .carousel-control.left{ padding-right:3px;}
+.carousel.slide .carousel-control.right{ padding-left:3px;}
+.carousel.slide .carousel-control:hover{ background:#fff !important;}
+.business_product{ padding:30px 0px; background:#00c853; margin-bottom:60px;}
+.business_product .img_hght{ height:68px;}
+.business_product h2{ color:#fff;}
+.business_product p{ font-size:20px; color:#fff; line-height:24px; margin-top:15px; margin-bottom: 30px; min-height:48px;}
+.business_product .site_btn{ background:transparent !important; border:2px solid #fff !important; width:223px; height:36px;}
+.business_product .site_btn:hover{ color:#00c853 !important; background:#fff !important;}
+.terms.text-center{ margin-bottom:60px; line-height:19px; color:#1e1e1e;}
+.terms .red_link{ font-size:16px !important; text-decoration:none !important;}
+#our_plan .modal-dialog, #filter_review .modal-dialog, #location .modal-dialog, #company .modal-dialog{width:945px; max-width:100%;}
+#our_plan .modal-dialog .modal-content, #filter_review .modal-dialog .modal-content, #location .modal-dialog .modal-content, #company .modal-dialog .modal-content{ border-radius:0px;}
+#our_plan .modal-dialog .modal-content .modal-header, #filter_review .modal-dialog .modal-content .modal-header,  #location .modal-dialog .modal-content .modal-header,  #company .modal-dialog .modal-content .modal-header{ padding:25px 50px; border-bottom:none;}
+#our_plan .modal-dialog .modal-content .modal-body, #filter_review .modal-dialog .modal-content .modal-body{ padding:10px 35px 30px;}
+#our_plan .modal-dialog .modal-content .modal-header span{ display: inline-block; font-size: 14px; margin-top: 9px;}
+#our_plan input{ margin-bottom: 20px; border:2px solid #757575;}
+#our_plan input::-webkit-input-placeholder{ font-style:italic;}
+#our_plan input::-moz-placeholder{ font-style:italic;}
+#our_plan input::-ms-input-placeholder{ font-style:italic;}
+#our_plan .modal-dialog .modal-content .modal-footer, #filter_review .modal-dialog .modal-content .modal-footer, #location .modal-dialog .modal-content .modal-footer, #company .modal-dialog .modal-content .modal-footer{ background:#f0f0f0; padding:12px 50px;}
+#our_plan .site_btn{ padding-top:2px;}
+#our_plan .modal-dialog .modal-content .modal-header .close, #filter_review .modal-dialog .modal-content .modal-header .close, #location .modal-dialog .modal-content .modal-header .close, #company .modal-dialog .modal-content .modal-header .close{color: #757575 !important; font-size: 31px; line-height: 15px; margin-top: 0; opacity: 1; position: absolute; right: 12px; top: 12px;}
+#filter_review .modal-title img, #location .modal-title img, #company .modal-title img{ margin-right:11px;}
+#filter_review .modal-dialog .modal-content .modal-header, #location .modal-dialog .modal-content .modal-header, #company .modal-dialog .modal-content .modal-header{ padding-bottom:0px;}
+#filter_review .modal-dialog .modal-content .modal-body, #location .modal-dialog .modal-content .modal-body, #company .modal-dialog .modal-content .modal-body{ padding:5px 50px 30px;}
+#filter_review .search-for-car .inner-search, #location .search-for-car .inner-search, #company .search-for-car .inner-search, .search-for-car.companies .inner-search{ width: 100% !important;}
+#filter_review .search-for-car, #location .search-for-car , #company .search-for-car, .search-for-car.companies{ padding: 8px 80px 8px 8px; position: relative;}
+#filter_review .search-for-car .inner-search-button, #location .search-for-car .inner-search-button , #company .search-for-car .inner-search-button, .search-for-car.companies .inner-search-button{ position: absolute; right: 8px;}
+#filter_review .search-for-car .form-control, #location .search-for-car .form-control, #company .search-for-car .form-control{ padding:0px 10px;}
+.search-for-car.companies input.form-control{ padding-left:20px;}
+#filter_review input::-webkit-input-placeholder, #location input::-webkit-input-placeholder, #company input::-webkit-input-placeholder, .search-for-car.companies input::-webkit-input-placeholder{ color:#666;}
+#filter_review input::-moz-placeholder, #location input::-moz-placeholder, #company input::-moz-placeholder, .search-for-car.companies input::-moz-placeholder{ color:#666;}
+#filter_review input::-ms-input-placeholder, #location input::-ms-input-placeholder, #company input::-ms-input-placeholder, .search-for-car.companies input::-ms-input-placeholder{ color:#666;}
+#filter_review .modal-footer .red_link, #location .modal-footer .red_link, #company .modal-footer .red_link{ padding:6px 0px;}
+#filter_review .modal-footer .red_link img, #location .modal-footer .red_link img, #company .modal-footer .red_link img{ margin-left:5px;}
+.tag_box{ border: 1px solid #757575; border-radius: 20px; color: #4d4d4d; cursor: default; font-size: 16px; height: 30px; margin-top: 12px; padding:3px 12.6px 0; text-align: center; margin-right:10px; float:left;}
+.tag_box.selected, .tag_box.selected span{ background:#00c853; color:#fff; border-color:#00c853;}
+.tag_box span{ font-size:14px; color:#757575;}
+/*checkbox button css */
+.green_check input[type=checkbox]:not(old){	width : 28px; margin : 0; padding : 0; opacity : 0; position:absolute;}
+.green_check input[type=checkbox]:not(old) + label{ display: inline-block; padding-left : 28px; background:url(../images/uncheck_box.png) no-repeat; line-height:20px; height:27px; font-weight:400; cursor:pointer;}
+.green_check input[type=checkbox]:not(old):checked + label{ background:url(../images/check_box.png) no-repeat;}
+.check_head{ margin-top:15px; margin-bottom:15px; color:#4d4d4d;}
+#location .modal-body, #location .modal-dialog, #company .modal-body, #company .modal-dialog{ padding-bottom:0px !important; margin-bottom:0px !important;}
+#company .search-box{ margin-bottom:27px !important;}
+#location ul, #company ul{ padding-left:0px;}
+.green_check{ list-style:none; float: left; width: 33.33%;}
+.company_list{box-shadow: 0px 2px 5px #a3a3a3;}
+.sorting{ background:#f0f0f0; padding:12px 0px; font-size:18px; margin-top:5px; margin-bottom:40px;}
+.sorting img{ margin-right:10px;}
+.sorting span{ font-family: "Roboto slab",sans-serif; font-size:23.9px; font-weight:600;}
+.customer_list_footer{ padding-left: 0px; display: inline-block; width: 100%; padding-top: 8px;}
+.customer_list_footer li { width: 10%; float: left; list-style: none; text-transform:uppercase; font-size:13px;}
+.customer_list_footer li span{ display:block; font-size:20px; color:#1e1e1e; font-family: "Roboto slab",sans-serif;}
+.customer_list_footer li:last-child{ width:50%; text-align:left; padding-left:15px; padding-top:16px; color:#e2001a;}
+.company_list .company_logo{ max-width:100%; height:auto; }
+.navbar{ margin-bottom:0px;}
+.search-for-car{padding: 8px 80px 8px 8px !important; max-width: 100%; position: relative;}
+.search-for-car .inner-search{width: 100% !important;}
+.search-for-car .inner-search-button{ position: absolute; right: 8px;}
+/*.top_header.navbar-fixed-top.sticky-header{ background:#f0f0f0;}*/
+.top_header .navbar-header{margin-top: 12px; padding-bottom: 20px;}
+.footer_social_section{display: inline-block; margin-top: -127px; width: 100%;}
+
+/* review page */ 
 
 #review_page .entry-title > a {
     color: #e2001a;
@@ -615,26 +880,26 @@ a.socialIcon:hover, .socialHoverClass {
 }
 
 #review_page .post-thumbnail{
-	width:120px;
-	height:90px;
-	padding-left:0px;
-	padding-right:0px;
+    width:120px;
+    height:90px;
+    padding-left:0px;
+    padding-right:0px;
 }
 #review_page .post-thumbnail img{
-	width:100%;
-	height:100%;
+    width:100%;
+    height:100%;
     object-fit: cover;
 }
 #review_page .entry-content{
-	color:#4d4d4d;
-	font-size:16px;
+    color:#4d4d4d;
+    font-size:16px;
 
 }
 ul.review-fields {
     margin: 0;
     padding: 0;
     list-style-type: none;
-	min-height:40px;
+    min-height:40px;
 }
 .review-fields li {
     display: inline-block;
@@ -643,8 +908,8 @@ ul.review-fields {
     font-size: 16px;
 }
 .review-fields li a{
-	color:#4d4d4d;
-	text-decoration:none
+    color:#4d4d4d;
+    text-decoration:none
 }
 .review-fields li a:hover{
 color:#e2001a;
@@ -654,17 +919,17 @@ color:#757575;
 margin-right:3px;
 }
 .fs12{
-	font-size:12px;
+    font-size:12px;
 }
 #review_page .review {
     border-bottom: 1px solid #adadad;
     margin-bottom: 40px;
     padding-bottom: 20px;
 }
-#review_page .page-header{ 
-	margin:0px;
-	padding:0px;
-	border:0px;
+#review_page .page-header{
+    margin:0px;
+    padding:0px;
+    border:0px;
 }
 span.billet.from-mobile {
     background: #dcdcdc;
@@ -688,20 +953,20 @@ display:inline-block;
 color:#4d4d4d;
 }
 .add-comment{
-	background:url(../images/comment-icon.png) no-repeat;
-	text-decoration:none !important;
-	display:inline-block;
+    background:url(../images/comment-icon.png) no-repeat;
+    text-decoration:none !important;
+    display:inline-block;
     padding-left: 31px;
     background-position: 0px 3px;
-	    -o-transition: all 0s ease-in-out;
+        -o-transition: all 0s ease-in-out;
     -moz-transition: all 0s ease-in-out;
     -webkit-transition: all 0s ease-in-out;
     transition: all 0s ease-in-out;
-	margin-top:0px;
+    margin-top:0px;
 }
 .add-comment:hover{
     background-position:0px -25px;
-	color:#757575;
+    color:#757575;
 }
 .was-this-review-needfull{
     padding: 16px 0;

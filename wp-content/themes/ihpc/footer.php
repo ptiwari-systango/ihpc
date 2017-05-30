@@ -54,14 +54,14 @@
 <?php wp_footer(); ?>
 
 <script type="text/javascript">
-/*$(window).scroll(function(){
-  if ($(window).scrollTop() >= 50) {
-    $('.sticky-header').addClass('fixed');
+jQuery(window).scroll(function(){
+  if (jQuery(window).scrollTop() >= 50) {
+    jQuery('.sticky-header').addClass('fixed');
    }
    else {
-    $('.sticky-header').removeClass('fixed');
+    jQuery('.sticky-header').removeClass('fixed');
    }
-});*/
+});
 </script>
 </body>
 </html>

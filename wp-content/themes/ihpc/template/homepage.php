@@ -1,11 +1,13 @@
 <?php
 /*
-	Template Name: Home Page
+Template Name: Home Page
 */
 ?>
+<?php 
+get_header();
 
+?>
 
-<?php get_header(); ?>
 <div id="primary" class="content-area">
 <div class="ipccf_footer">
     <div class="container">
@@ -26,7 +28,6 @@
 		<?php
 		// Start the loop.
 		while ( have_posts() ) : the_post();
-
 			// Include the page content template.
 			//get_template_part( 'template-parts/content', 'page' );
 
@@ -34,11 +35,9 @@
 			if ( comments_open() || get_comments_number() ) {
 				comments_template();
 			}
-
 			// End of the loop.
 		endwhile;
 		?>
-
 	</main><!-- .site-main -->
 
 	<?php get_sidebar(); ?>

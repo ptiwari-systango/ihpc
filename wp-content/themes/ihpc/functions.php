@@ -27,17 +27,23 @@ if ( version_compare( $GLOBALS['wp_version'], '4.7-alpha', '<' ) ) {
  
  
  function my_nav_wrap() {
-  // default value of 'items_wrap' is <ul id="%1$s" class="%2$s">%3$s</ul>'
-  
+  // default value of 'items_wrap' is <ul id="%1$s" class="%2$s">%3$s</ul>'  
   // open the <ul>, set 'menu_class' and 'menu_id' values
   $wrap  = '<ul id="%1$s" class="%2$s">';
-  
   // get nav items as configured in /wp-admin/
   $wrap .= '%3$s';
-  
-  // the static link 
-  $wrap .= '<li class="active top_submit_review"><a href="#">submit review</a></li> <li class="top_login"><a href="#"> Log in </a></li> <li><a href="#">Sign up</a></li> <li><a href="#"><img src="http://localhost/ihpc/wp-content/themes/ihpc/assets/images/bars_icon.png"></a></li>';
-  
+  // the static link
+  if( !is_user_logged_in() ){
+  	$wrap .= '<li class="active top_submit_review"><a href="#">submit review</a></li>
+  			<li class="top_login"><a href="'.site_url('login').'">Log in</a></li>
+  			<li><a href="'.site_url('sign-up').'">Sign up</a></li>
+  			<li><a href="#"><img src="'.site_url("wp-content/themes/ihpc/assets/images/bars_icon.png").'"></a></li>';
+  }
+  else{
+  	$wrap .= '<li class="active top_submit_review"><a href="#">submit review</a></li>
+  			<li><a href="'.wp_logout_url( ).'">Log out</a></li>
+  			<li><a href="#"><img src="'.site_url("wp-content/themes/ihpc/assets/images/bars_icon.png").'"></a></li>';
+  }  
   // close the <ul>
   $wrap .= '</ul>';
   // return the result
@@ -237,26 +243,40 @@ function ihpc_setup() {
 	
 	//Register New side bar
 	$args_iv = array(
-	'name'          => __( 'Footer 4', 'ihpc' ),
-	'id'            => 'footer-4',
-	'description'   => '',
-    'class'         => '',
-	'before_widget' => '<li id="%1$s" class="widget %2$s">',
-	'after_widget'  => '</li>',
-	'before_title'  => '<h3 class="widgettitle">',
-	'after_title'   => '</h3>' );
+			'name'          => __( 'Footer 4', 'ihpc' ),
+			'id'            => 'footer-4',
+			'description'   => '',
+		    'class'         => '',
+			'before_widget' => '<li id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</li>',
+			'before_title'  => '<h3 class="widgettitle">',
+			'after_title'   => '</h3>' 
+		);
 	register_sidebar( $args_iv );
 	
 	$args_v = array(
-	'name'          => __( 'Footer 5', 'ihpc' ),
-	'id'            => 'footer-5',
-	'description'   => '',
-    'class'         => '',
-	'before_widget' => '<li id="%1$s" class="widget %2$s">',
-	'after_widget'  => '</li>',
-	'before_title'  => '<h3 class="widgettitle">',
-	'after_title'   => '</h3>' );
+		'name'          => __( 'Footer 5', 'ihpc' ),
+		'id'            => 'footer-5',
+		'description'   => '',
+	    'class'         => '',
+		'before_widget' => '<li id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</li>',
+		'before_title'  => '<h3 class="widgettitle">',
+		'after_title'   => '</h3>' 
+	);
 	register_sidebar( $args_v );
+
+	$args_vi = array(
+		'name'          => __( 'Sidebar Banners', 'ihpc' ),
+		'id'            => 'images-banner',
+		'description'   => '',
+	    'class'         => '',
+		'before_widget' => '<div id="%1$s" class="google_adds %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h3 class="widgettitle">',
+		'after_title'   => '</h3>' 
+	);
+	register_sidebar( $args_vi );
 
 	//New Customer type role
 	$result = add_role(
@@ -370,9 +390,9 @@ function ihpc_widgets_init() {
 		'name'          => __( 'Sidebar', 'ihpc' ),
 		'id'            => 'sidebar-1',
 		'description'   => __( 'Add widgets here to appear in your sidebar.', 'ihpc' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'before_widget' => '<section id="%1$s" class="widget hot-topics %2$s">',
 		'after_widget'  => '</section>',
-		'before_title'  => '<h2 class="widget-title">',
+		'before_title'  => '<h2 class="widget-title sub-title">',
 		'after_title'   => '</h2>',
 	) );
 

@@ -78,14 +78,14 @@
 				// Restore original Post Data
 				wp_reset_postdata();
 				?>
-					<a href="<?php echo esc_url(get_post_type_archive_link('review'));?>">More Featured Review -></a>
+					<!-- <a href="<?php //echo esc_url(get_post_type_archive_link('review'));?>">More Featured Review -></a> -->
 				</div>
 			</div><!-- .entry-content -->
 
 		</div><!-- .wrap -->
-		<h1>Power Companies in the News</h1>
+		<!-- <h1>Power Companies in the News</h1> -->
 		<?php
-		$argsc = array(
+		/*$argsc = array(
 			'post_type'              => array( 'companies' ),
 			'post_status'            => array( 'publish' ),
 			'posts_per_page'         => '8',
@@ -119,7 +119,7 @@
 			// no posts found
 		}
 		// Restore original Post Data
-		wp_reset_postdata();
+		wp_reset_postdata();*/
 		?>
 
 	</div><!-- .panel-content -->
