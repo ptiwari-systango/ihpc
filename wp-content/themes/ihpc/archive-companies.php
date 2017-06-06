@@ -56,7 +56,13 @@ if( !empty($_REQUEST['model']) || !empty($_REQUEST['location']) || !empty($_REQU
 				</form>
 			</div>
 			<div class="clearfix"></div>
-			<strong class="red_bold">Most complained about</strong> 
+			<strong class="red_bold">Most complained about</strong>
+			<div class="sorting">
+				<div class="col-sm-3 col-md-2"><span>A-Z</span></div>
+				<div class="col-sm-3 col-md-2"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/locate_point.png">Location</div>
+				<div class="col-sm-3 col-md-2"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/categories.png"> Category</div>
+				<div class="clearfix"></div>
+			</div>
 		</div>
 	</div>
 
@@ -85,6 +91,56 @@ if( !empty($_REQUEST['model']) || !empty($_REQUEST['location']) || !empty($_REQU
 		endif; ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
+
+
+<div class="modal fade ihpc-modal" id="choose-a-plan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        	<form method="post" action="<?php echo admin_url('admin-post.php') ?>" >
+	            <!-- Modal Header -->
+	            <div class="modal-header" style="border-bottom: 0;">
+	              <button type="button" class="close" data-dismiss="modal">
+	                     <span aria-hidden="true">×</span>
+	                     <span class="sr-only">Close</span>
+	              </button>
+	              <h4 class="modal-title" id="myModalLabel">Do not know what plan to choose?</h4>
+	              <span class="modal-small-title">Fill out the form and we will contact you.</span>
+	            </div>            
+	            <!-- Modal Body -->
+	            <div class="modal-body">                
+	                  <div class="form-group col-sm-6">
+	                    <label for="input1">Email <span class="required">*</span></label>
+	                      <input class="form-control" name="reg_company_email" id="input1" placeholder="" type="email">
+	                  </div>
+	                  <div class="form-group col-sm-6">
+	                    <label for="input2">Phone</label>
+	                      <input class="form-control" name="reg_company_phone" id="input2" placeholder="" type="text">
+	                  </div>
+	                  <div class="form-group col-sm-6">
+	                    <label for="input3">Your Full Name <span class="required">*</span></label>
+	                      <input class="form-control" name="reg_company_fullname" id="input3" placeholder="" type="text">
+	                  </div>
+	                  <div class="form-group col-sm-6">
+	                    <label for="input4">Corporate Title</label>
+	                      <input class="form-control" name="reg_company_title" id="input4" placeholder="" type="text">
+	                  </div>
+	                  <div class="form-group col-sm-6">
+	                    <label for="input5">Company Name <span class="required">*</span></label>
+	                      <input class="form-control" name="reg_company_name" id="input5" placeholder="" type="text">
+	                  </div>
+	                  <div class="clearfix"></div> 
+	            </div>            
+	            <!-- Modal Footer -->
+	            <div class="modal-footer">
+	            	<?php wp_nonce_field('register_company','security-code'); ?>
+	            	<input type="hidden" name="action" value="register_company" />
+	                <button type="button" class="btn" data-dismiss="modal">CANCEL</button>
+	                <input type="submit" class="btn modal-footer-btn" value="SUBMIT">
+	            </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <?php
 $args = array('hide_empty' => FALSE,'taxonomy' => 'companiestax');

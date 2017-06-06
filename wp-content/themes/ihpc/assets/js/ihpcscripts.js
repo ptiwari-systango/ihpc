@@ -2,21 +2,21 @@
  * All Scripts and functions
  */
 
-$(document).ready(function(){
+jQuery(document).ready(function(){
     //console.log(ihcpvars.ihcp_ajax_url);
     //console.log(ihcpvars.ihcp_nonce);
     var ajaxurl = ihcpvars.ihcp_ajax_url;
     var ajaxurlnonce = ihcpvars.ihcp_nonce;
     //Adding class on body
-    if ($("body").hasClass("page")) {
-        $(".top_header").addClass("fixed")
+    if (jQuery("body").hasClass("page")) {
+        jQuery(".top_header").addClass("fixed")
     }
 
     //Home page search ajax company list
-    //$("#company_name").bind("keyup change", function(e) {
-    $("#company_name").bind("keyup", function(e) {
-        var s_companyname = $(this).val();
-        $.post(
+    //jQuery("#company_name").bind("keyup change", function(e) {
+    jQuery("#company_name").bind("keyup", function(e) {
+        var s_companyname = jQuery(this).val();
+        jQuery.post(
             ajaxurl,
             {
                 'action': 'home_search_title',
@@ -106,7 +106,7 @@ function fb_login(){
                 user_picture = response.picture.data.url; //get user imagesrc
                 //console.log(response);
                 //console.log(response.picture.data.url);
-                $.ajax({
+                jQuery.ajax({
                     url : ajaxurl,
                     type : 'post',
                     data : {

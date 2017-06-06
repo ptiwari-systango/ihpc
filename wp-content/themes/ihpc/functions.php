@@ -975,3 +975,50 @@ function get_company_reviews($company_id){
 	}
 	return $i;
 }
+
+
+/***
+* Register company
+***/
+add_action('admin_post_nopriv_register_company','register_company_callback');
+//add_action( 'admin_post_register_company', 'register_company_callback' );
+function register_company_callback(){
+	if( !empty($_REQUEST) ){
+		if( wp_verify_nonce($_POST['security-code'],'register_company') ){
+			$user_arg = array();
+			$user_arg['user_pass'] 		= '123456789';
+			$user_arg['user_login'] 	= $_REQUEST['reg_company_name'];
+			$user_arg['user_email'] 	= $_REQUEST['reg_company_email'];
+			$user_arg['display_name'] 	= $_REQUEST['reg_company_title'];
+		    $user_arg['role'] 			= 'contributor';
+			$fullName = explode(" ", $_REQUEST['reg_company_fullname']);
+			if( count($fullName) == 1 ){
+				$firstName = $fullName[0];
+				$user_arg['first_name'] = $firstName;
+			}
+			else{
+				$firstName = $fullName[0];
+				unset($fullName[0]);
+				$lastName = implode(" ", $fullName);
+				$user_arg['first_name'] = $firstName;
+				$user_arg['last_name'] 	= $lastName;
+			}			
+		    $user_id = wp_insert_user( $user_arg );		    
+		    if ( !is_wp_error( $user_id ) ) {
+		    	update_user_meta( $user_id, 'user_phone	', $user_arg['reg_company_phone'] );
+				wp_send_new_user_notifications( $user_id, 'both' );
+				$redirect_to = site_url('login?msg=successfull registered a free plan, please login to comment');
+				wp_safe_redirect( $redirect_to );
+			}
+			else{
+				$errors = $user_id->errors;
+				foreach ($errors as $key => $error) {
+					$msg 			= $error[0];
+					$redirect_to 	= site_url('login?msg='.$msg);
+					wp_safe_redirect( $redirect_to );					
+				}
+			}
+			exit();
+		}
+	}
+}

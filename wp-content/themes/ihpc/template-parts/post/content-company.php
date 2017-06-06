@@ -51,7 +51,13 @@
        <a href="<?php echo esc_url(get_permalink()); ?>"><h3 class="company_list_title"><?php echo get_the_title(); ?> </h3></a>
         <?php  $company_website = get_field( "company_website" );  ?>
         <a href="<?php echo esc_url($company_website); ?>"><p class="company_url"><?php echo $company_website; ?></p></a>
-        <p><?php echo the_content(); ?></p>
+        <p><?php
+            if( is_single() ) 
+                echo the_content();
+            else
+                echo wp_trim_words( get_the_content(), 95, '...');
+            ?>
+        </p>
     </div>
 
     <div class="col-sm-3 customer_feedback">
@@ -70,7 +76,14 @@
         <?php if(function_exists('the_ratings')) { the_ratings(); } ?>
         <!-- <h3 class="text-center rating_title ">2.5</h3>
         <div class="rating_bulb"><img src="<?php //echo get_template_directory_uri(); ?>/assets/images/rating_bulb.png"></div> -->
-        <a data-toggle="modal" data-target="#choose-a-plan" class="respond_customer_btn"> Respond to your customers </a>  
+        <?php 
+            if( !is_user_logged_in() ){
+                echo '<a data-toggle="modal" data-target="#choose-a-plan" class="respond_customer_btn">Respond to your customers</a>';
+            }
+            else{
+                echo '<a href="'.get_permalink().'" class="respond_customer_btn">Respond to your customers</a>';   
+            }
+        ?>        
     </div>
 
     <div class="clearfix"></div>

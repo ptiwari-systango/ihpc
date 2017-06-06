@@ -19,33 +19,31 @@
     ?>
     <header class="entry-header">
         <?php
-        if ( 'review' === get_post_type() ) :
-            echo '<div class="entry-meta">';
-            if ( is_single() ) :
-                ihpc_posted_on();
-            else :
-                echo ihpc_time_link();
-                ihpc_edit_link();
-            endif;
-            echo '</div><!-- .entry-meta -->';
-        endif;
-
         if ( is_single() ) {
             the_title( '<h1 class="entry-title">', '</h1>' );
-        } else {
+        }
+        else {
             the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
         }
         ?>
 		<ul class="review-fields">
-		  <li><span class="billet from-mobile">From mobile</span></li>
-		  <li class="normal-size"> <i class="fa fa-building-o" aria-hidden="true"></i> <a href="#"> <span itemprop="name">Rosewe</span> </a> </li>
-		  <li><i class="fa fa-clock-o" aria-hidden="true"></i> <span class="fs12"> 44 minutes ago </span></li>
-		  <li> <i class="fa fa-user" aria-hidden="true"></i> <span class="fs12">by </span><span class="fs12">anonymous</span> </li>
+		  <!-- <li><span class="billet from-mobile">From mobile</span></li> -->
+          <?php 
+            $company_id = get_post_meta( get_the_ID(), 'REVIEW_COMPANYID', true );
+            if( !empty($company_id) ){
+                $company_name   = get_the_title( $company_id );
+                $company_url    = get_the_permalink( $company_id );
+                echo '<li class="normal-size">
+                        <i class="fa fa-building-o" aria-hidden="true"></i>
+                        <a href="'.$company_url.'"><span itemprop="name">'.$company_name.'</span></a>
+                    </li>';
+            }
+          ?>		  
+		  <li><i class="fa fa-clock-o" aria-hidden="true"></i><span class="fs12"><?php echo get_the_date() ?></span></li>
+		  <li><i class="fa fa-user" aria-hidden="true"></i><span class="fs12">by </span><span class="fs12"><?php echo get_the_author() ?></span></li>
 		  <li>#1044757</li>
+          <li><?php ihpc_edit_link() ?></li>
 		</ul>
-
-		
-		
     </header><!-- .entry-header -->
 
     <?php if ( '' !== get_the_post_thumbnail() && ! is_single() ) : ?>
@@ -71,14 +69,14 @@
             'link_after'  => '</span>',
         ) );
         ?>
-		<a href="#" class="add-comment"> Add comment</a>
+		<a href="<?php echo esc_url( get_permalink() ); ?>" class="add-comment">Add comment</a>
 		
 		<div class="clearfix"></div>
 		
     </div>
-	<div class="was-this-review-needfull col-sm-12">
+	<!-- <div class="was-this-review-needfull col-sm-12">
   	  <span>Was this review helpful?</span>		
-	</div>
+	</div> -->
 
 	<!-- .entry-content -->
     <?php if ( is_single() ) : ?>

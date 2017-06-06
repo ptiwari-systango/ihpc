@@ -51,7 +51,7 @@ get_header(); ?>
 	</div>
 </div><!-- .wrap -->
 <div class="col-lg-3">
-	<?php get_sidebar(); ?>
+	<?php get_sidebar('sidebar-1'); ?>
 </div>
 
 <?php get_footer(); ?>
