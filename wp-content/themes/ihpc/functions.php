@@ -34,13 +34,13 @@ if ( version_compare( $GLOBALS['wp_version'], '4.7-alpha', '<' ) ) {
   $wrap .= '%3$s';
   // the static link
   if( !is_user_logged_in() ){
-  	$wrap .= '<li class="active top_submit_review"><a href="#">submit review</a></li>
+  	$wrap .= '<li class="active top_submit_review"><a href="'.site_url('submit-review').'">submit review</a></li>
   			<li class="top_login"><a href="'.site_url('login').'">Log in</a></li>
   			<li><a href="'.site_url('sign-up').'">Sign up</a></li>
   			<li><a href="#"><img src="'.site_url("wp-content/themes/ihpc/assets/images/bars_icon.png").'"></a></li>';
   }
   else{
-  	$wrap .= '<li class="active top_submit_review"><a href="#">submit review</a></li>
+  	$wrap .= '<li class="active top_submit_review"><a href="'.site_url('submit-review').'">submit review</a></li>
   			<li><a href="'.wp_logout_url( ).'">Log out</a></li>
   			<li><a href="#"><img src="'.site_url("wp-content/themes/ihpc/assets/images/bars_icon.png").'"></a></li>';
   }  
@@ -240,46 +240,9 @@ function ihpc_setup() {
 	$starter_content = apply_filters( 'ihpc_starter_content', $starter_content );
 
 	add_theme_support( 'starter-content', $starter_content );
-	
-	//Register New side bar
-	$args_iv = array(
-			'name'          => __( 'Footer 4', 'ihpc' ),
-			'id'            => 'footer-4',
-			'description'   => '',
-		    'class'         => '',
-			'before_widget' => '<li id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</li>',
-			'before_title'  => '<h3 class="widgettitle">',
-			'after_title'   => '</h3>' 
-		);
-	register_sidebar( $args_iv );
-	
-	$args_v = array(
-		'name'          => __( 'Footer 5', 'ihpc' ),
-		'id'            => 'footer-5',
-		'description'   => '',
-	    'class'         => '',
-		'before_widget' => '<li id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</li>',
-		'before_title'  => '<h3 class="widgettitle">',
-		'after_title'   => '</h3>' 
-	);
-	register_sidebar( $args_v );
-
-	$args_vi = array(
-		'name'          => __( 'Sidebar Banners', 'ihpc' ),
-		'id'            => 'images-banner',
-		'description'   => '',
-	    'class'         => '',
-		'before_widget' => '<div id="%1$s" class="google_adds %2$s">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h3 class="widgettitle">',
-		'after_title'   => '</h3>' 
-	);
-	register_sidebar( $args_vi );
 
 	//New Customer type role
-	$result = add_role(
+	/*$result = add_role(
 		'companycustomer',
 		__( 'Customer' ),
 		array(
@@ -287,7 +250,7 @@ function ihpc_setup() {
 			'edit_posts'   => true,
 			'delete_posts' => false, // Use false to explicitly deny
 		)
-	);
+	);*/
 }
 add_action( 'after_setup_theme', 'ihpc_setup' );
 
@@ -380,12 +343,34 @@ function ihpc_resource_hints( $urls, $relation_type ) {
 }
 add_filter( 'wp_resource_hints', 'ihpc_resource_hints', 10, 2 );
 
+
 /**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
 function ihpc_widgets_init() {
+
+	register_sidebar( array(
+		'name'          => __( 'Front Page Sidebar: Top', 'ihpc' ),
+		'id'            => 'frontpage-sidebar-1',
+		'description'   => __( 'Add widgets here to appear in your frontpage.', 'ihpc' ),
+		'before_widget' => '<section id="%1$s" class="widget hot-topics %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget-title sub-title">',
+		'after_title'   => '</h2>',
+	) );
+
+	register_sidebar( array(
+		'name'          => __( 'Front Page Sidebar: Bottom', 'ihpc' ),
+		'id'            => 'frontpage-sidebar-2',
+		'description'   => __( 'Add widgets here to appear in your frontpage.', 'ihpc' ),
+		'before_widget' => '<section id="%1$s" class="widget hot-topics %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget-title sub-title">',
+		'after_title'   => '</h2>',
+	) );
+
 	register_sidebar( array(
 		'name'          => __( 'Sidebar', 'ihpc' ),
 		'id'            => 'sidebar-1',
@@ -414,6 +399,28 @@ function ihpc_widgets_init() {
 		'after_widget'  => '</section>',
 		'before_title'  => '<h3 class="widget-title">',
 		'after_title'   => '</h3>',
+	) );	
+
+	register_sidebar( array(
+			'name'          => __( 'Footer 4', 'ihpc' ),
+			'id'            => 'footer-4',
+			'description'   => '',
+		    'class'         => '',
+			'before_widget' => '<li id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</li>',
+			'before_title'  => '<h3 class="widgettitle">',
+			'after_title'   => '</h3>' 
+		) );
+	
+	register_sidebar( array(
+		'name'          => __( 'Footer 5', 'ihpc' ),
+		'id'            => 'footer-5',
+		'description'   => '',
+	    'class'         => '',
+		'before_widget' => '<li id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</li>',
+		'before_title'  => '<h3 class="widgettitle">',
+		'after_title'   => '</h3>' 
 	) );
 
 	register_sidebar( array(
@@ -426,6 +433,16 @@ function ihpc_widgets_init() {
 		'after_title'   => '</h3>',
 	) );
 
+	/*register_sidebar( array(
+		'name'          => __( 'Sidebar Banners', 'ihpc' ),
+		'id'            => 'images-banner',
+		'description'   => '',
+	    'class'         => '',
+		'before_widget' => '<div id="%1$s" class="google_adds %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h3 class="widgettitle">',
+		'after_title'   => '</h3>' 
+	) );*/
 
 }
 add_action( 'widgets_init', 'ihpc_widgets_init' );
@@ -516,6 +533,7 @@ function ihpc_scripts() {
 	wp_enqueue_style( 'bootstrap-min', get_theme_file_uri( '/assets/css/bootstrap.min.css' ), array( 'ihpc-style' ), '1.0' );
 	//theme CSS
 	wp_enqueue_style( 'theme-css', get_theme_file_uri( '/assets/css/theme.css' ), array( 'ihpc-style' ), '1.0' );
+	wp_enqueue_style( 'theme-responsive-css', get_theme_file_uri( '/assets/css/responsive_theme.css' ), array( 'ihpc-style' ), '1.0' );
 	// Load the html5 shiv.
 	wp_enqueue_script( 'html5', get_theme_file_uri( '/assets/js/html5.js' ), array(), '3.7.3' );
 	wp_script_add_data( 'html5', 'conditional', 'lt IE 9' );
@@ -698,6 +716,262 @@ add_action( 'wp_ajax_ihpc_social_login', 'ihpc_social_login' );
 add_action( 'wp_ajax_nopriv_ihpc_social_login', 'ihpc_social_login' );
 function ihpc_social_login(){
 	print_r($_POST);
-
 	wp_die();
+}
+
+/***
+* Register home page sidebar
+* Refer function ihpc_widgets_init();
+****/
+
+/***
+* Including IHPC required widgets
+****/
+include_once 'ihpc-widgets/most-active-users.php';
+include_once 'ihpc-widgets/most-active-companies.php';
+
+/****
+* Getting most hatted power companies
+****/
+function most_hatted_power_companies(){
+	$args = array(	'posts_per_page' => 20,
+					'post_type'	=> 'companies',
+					'meta_key'  => 'ratings_average',
+					'orderby'  	=> array( 'meta_value_num' => 'ASC', 'title' => 'ASC' ),
+				);
+	$the_query = new WP_Query( $args );
+	if ( $the_query->have_posts() ) {
+		$html1= $html2 = $html3 = '';
+		while ( $the_query->have_posts() ) {
+			$the_query->the_post();			
+			$nu_user_ratted = get_post_meta(get_the_ID(), 'ratings_users', true);			
+
+			$curr_time 		= current_time( 'timestamp' );
+			$last_month1 	= strtotime("-1 month",$curr_time);
+			$last_month2 	= strtotime("-2 month",$curr_time);
+			$last_week1 	= strtotime("-1 week",$curr_time);
+			$last_week2 	= strtotime("-2 week",$curr_time);
+			$post_date 		= strtotime(get_the_date());
+
+			//This week posts
+			if( ($post_date>$last_week1) ){
+				$html1 .= '<div>
+							<a href="'.get_permalink().'">'.get_the_title().'</a> 
+							<span>'.$nu_user_ratted.'</span>
+							<span>'.get_the_date().'</span>
+						</div>';
+			}			
+			//Getting last week posts
+			if( ($post_date<=$last_week1) && ($post_date > $last_week2) ){
+				$html2 .= '<div>
+							<a href="'.get_permalink().'">'.get_the_title().'</a> 
+							<span>'.$nu_user_ratted.'</span>
+							<span>'.get_the_date().'</span>
+						</div>';
+			}
+			//Getting last month posts
+			if( ($post_date < $last_month1) && ($post_date > $last_month2) ){
+				$html3 .= '<div>
+							<a href="'.get_permalink().'">'.get_the_title().'</a> 
+							<span>'.$nu_user_ratted.'</span>
+							<span>'.get_the_date().'</span>
+						</div>';
+			}			
+		}
+		wp_reset_postdata();
+		$rtn = '';
+		$rtn .= "<div class='col-md-4'><h4>Now</h4>".$html1."</div>";
+		$rtn .= "<div class='col-md-4'><h4>Last week</h4>".$html2."</div>";
+		$rtn .= "<div class='col-md-4'><h4>Last month</h4>".$html3."</div>";
+		return $rtn;
+	} else {
+		return 'No data';
+	}	
+}
+
+/****
+* Getting meta values from db
+****/
+function get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
+    global $wpdb;
+    if( empty( $key ) )
+        return;
+    $r = $wpdb->get_results( $wpdb->prepare( "
+        SELECT p.ID, pm.meta_value FROM {$wpdb->postmeta} pm
+        LEFT JOIN {$wpdb->posts} p ON p.ID = pm.post_id
+        WHERE pm.meta_key = '%s' 
+        AND p.post_status = '%s' 
+        AND p.post_type = '%s'
+    ", $key, $status, $type ));
+    foreach ( $r as $my_r )
+        $metas[$my_r->ID] = $my_r->meta_value;
+    return $metas;
+}
+
+/****
+* Getting top locations
+****/
+function top_locations(){
+	$locations = get_meta_values('company_location','companies'); 
+	$locations = array_values($locations);
+	$locations = array_unique($locations);
+	sort($locations);
+	foreach ($locations as $key => $location) {
+		if( $key<5 ){
+			$div1 .= "<li>$location</li>";
+		}
+		elseif( $key<9 ){
+			$div2 .= "<li>$location</li>";	
+		}
+		elseif(  $key<14  ){
+			$div3 .= "<li>$location</li>";
+		}
+	}
+	return "<div>
+				<ul>$div1</ul>
+				<ul>$div2</ul>
+				<ul>$div3</ul>
+			</div>";
+}
+
+/****
+* Getting categories
+****/
+function get_ihpc_categories($ihpc_taxonomy){
+	$args = array(	'taxonomy' => $ihpc_taxonomy,
+					'hide_empty' => false,
+					'orderby'=>'name',
+					'number' => 24
+				);
+	$terms = get_terms( $args );
+	$cates = '';
+	foreach ($terms as $key => $term) {
+		$acf_term_format = $ihpc_taxonomy."_".$term->term_id;
+		$term_url = get_field('category_icon', $acf_term_format);
+		//if( !empty($term_url) ){
+			$cates .= "<div style='width:150px;height:150px' class='pull-left'>
+						<a href='".site_url('review')."'>
+							<img class='img-responsive' src='".$term_url."' /><br/>
+							<span>".$term->name."</span>
+						</a>
+					</div>";
+		//}		
+		
+	}
+	return $cates;
+}
+
+/*
+* Getting companies by ratings
+*/
+function get_companies_by_ratings($number_of_companies,$orderBy){
+	$args = array(	'posts_per_page' => $number_of_companies,
+					'post_type'	=> 'companies',
+					'meta_key'  => 'ratings_average',
+					'orderby'  	=> array( 'meta_value_num' => $orderBy, 'title' => 'ASC' ),
+				);
+	$array = array();
+	$i = 0;
+	$the_query = new WP_Query( $args );
+	if ( $the_query->have_posts() ) {		
+		while ( $the_query->have_posts() ) {
+			$the_query->the_post();
+			$ratting = get_post_meta(get_the_ID(), 'ratings_average', true);			
+			$array[$i]['url'] 			= get_permalink();
+			$array[$i]['title'] 		= get_the_title();
+			$array[$i]['date'] 			= get_the_date();
+			$array[$i]['ihpc_ratings'] 	= $ratting;			
+			$i++;	
+		}
+	}
+	return $array;
+}
+
+function get_companies($number_of_companies){
+	$args = array(	'posts_per_page' => $number_of_companies,
+					'post_type'	=> 'companies'
+				);
+	$array = array();
+	$i = 0;
+	$the_query = new WP_Query( $args );
+	if ( $the_query->have_posts() ) {		
+		while ( $the_query->have_posts() ) {
+			$the_query->the_post();
+			$array[$i]['url'] 			= get_permalink();
+			$array[$i]['title'] 		= get_the_title();
+			$array[$i]['date'] 			= get_the_date();
+			$i++;	
+		}
+	}
+	return $array;
+}
+
+
+/****
+* Getting reviews
+****/
+function get_reviews( $number_of_reviews ){
+	$args = array(	'posts_per_page' => $number_of_reviews,
+					'post_type'	=> 'review'
+				);
+	$array 	= array();
+	$i 		= 0;
+	$the_query = new WP_Query( $args );
+	if ( $the_query->have_posts() ) {
+		while ( $the_query->have_posts() ) {
+			$the_query->the_post();
+			$array[$i]['title'] = get_the_title();
+			$array[$i]['excerpt'] = get_the_excerpt();
+			$array[$i]['content'] = get_the_content();
+			$array[$i]['permalink'] = get_permalink();
+			$array[$i]['date'] = get_the_date();
+			$i++;
+		}		
+		wp_reset_postdata();
+		return $array;
+	}
+	else {
+	return $array;
+	}
+}
+
+/****
+* Getting comments
+****/
+function get_ihpc_comments( $number_of_comments, $post_type ){
+	$args = array(
+	    'parent'	=> 0,
+	    'post_type' => $post_type,
+	    'number' 	=> $number_of_comments,
+	    'orderby' 	=> 'date',
+	    'order' 	=> 'DESC'
+	  );
+	$array 		= array();
+	$comments 	= get_comments($args);
+	$i = 0;
+	foreach($comments as $comment) :
+		$array[$i]['comment'] 	= $comment->comment_content;
+		$array[$i]['date'] 		= get_comment_date('',$comment->comment_ID);
+		$array[$i]['excerpt'] 	= get_comment_excerpt( $comment->comment_ID );
+		$i++;
+	endforeach;
+	return $array;
+}
+
+function get_company_reviews($company_id){
+	$args = array(	'posts_per_page' => -1,
+					'post_type'	=> 'review',
+					'meta_key'     => 'company_id_for_review',
+					'meta_value'   => $company_id,
+					'meta_compare' => '='
+				);
+	$i = 0;
+	$the_query = new WP_Query( $args );
+	if ( $the_query->have_posts() ) {		
+		while ( $the_query->have_posts() ) {
+			$the_query->the_post();		
+			$i++;	
+		}
+	}
+	return $i;
 }

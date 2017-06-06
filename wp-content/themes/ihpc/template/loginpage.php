@@ -36,10 +36,29 @@ if( isset($_POST['submit_type']) && ($_POST['submit_type'] == 'login') ){
 
 ?>
 
-<div class="sub-header text-center">
-	<h1>Login</h1>
-	<p>Lorem Ipsum is simply dummy text of the printing <br>and typesetting industry.</p>
-</div>
+<div class="sub-header">	
+	<main id="main" class="container" role="main">
+		<div id="primary" class="row">
+			<?php while ( have_posts() ) : the_post(); ?>
+				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+				<header class="text-center entry-header">
+					<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+					<?php ihpc_edit_link( get_the_ID() ); ?>
+				</header><!-- .entry-header -->
+				<div class="entry-content text-center">
+					<?php
+						the_content();
+						wp_link_pages( array(
+							'before' => '<div class="page-links">' . __( 'Pages:', 'ihpc' ),
+							'after'  => '</div>',
+						) );
+					?>
+				</div><!-- .entry-content -->
+			</article><!-- #post-## -->
+			<?php endwhile; // End of the loop. ?>
+		</div><!-- #primary -->
+	</main><!-- #main -->	
+</div><!-- .wrap -->
 <!-- main-content -->
 <div class="container pt-40">
 	<div class="col-md-offset-3 col-md-6 col-xs-12 login_signup">

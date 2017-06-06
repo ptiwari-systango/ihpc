@@ -23,7 +23,10 @@ if( !empty($_REQUEST['location']) ){
 	$search_args['meta_value'] = $_REQUEST['location'];	
 }
 if( !empty($_REQUEST['company_name']) ){
-	$search_args['title'] = $_REQUEST['company_name'];
+	global $wpdb;
+	$mypostids = $wpdb->get_col("select ID from $wpdb->posts where post_title LIKE '%".$_REQUEST['company_name']."%' ");
+	//$search_args['title'] = $_REQUEST['company_name'];
+	$search_args['post__in'] = $mypostids;
 }
 if( !empty($_REQUEST['model']) || !empty($_REQUEST['location']) || !empty($_REQUEST['company_name']) ){
 	$GLOBALS['wp_query'] = new WP_Query( $search_args );	

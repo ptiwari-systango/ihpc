@@ -67,15 +67,17 @@
     </div>
 
     <div class="col-sm-2">
-        <h3 class="text-center rating_title ">2.5</h3>
-        <div class="rating_bulb"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/rating_bulb.png"></div>
-        <a data-toggle="modal" data-target="#choose-a-plan" class="respond_customer_btn"> Respond to your customers </a>  </div>
+        <?php if(function_exists('the_ratings')) { the_ratings(); } ?>
+        <!-- <h3 class="text-center rating_title ">2.5</h3>
+        <div class="rating_bulb"><img src="<?php //echo get_template_directory_uri(); ?>/assets/images/rating_bulb.png"></div> -->
+        <a data-toggle="modal" data-target="#choose-a-plan" class="respond_customer_btn"> Respond to your customers </a>  
+    </div>
 
     <div class="clearfix"></div>
     <div class="col-md-10 col-md-offset-2 customer_list_footer">
         <div class="col-sm-1 text-center c_l_f_resolved"> <strong>23</strong> Issues<br>
             Resolved </div>
-        <div class="col-sm-1 text-center c_l_f_reviews"> 9,019
+        <div class="col-sm-1 text-center c_l_f_reviews"> <?php echo get_company_reviews( get_the_ID() ) ?>
             Reviews </div>
         <div class="col-sm-1 text-center c_l_f_losses"> $1.9M
             claimed<br>
