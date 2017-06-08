@@ -100,7 +100,7 @@ get_header(); ?>
 				$reviews = get_reviews(3);
 				foreach ($reviews as $key => $review) {
 					echo '<div class="panel">
-								<a href="'.$review['url'].'">'.$review['title'].'</a>
+								<a href="'.$review['permalink'].'">'.$review['title'].'</a>
 								<br/>
 								<span>'.$review['date'].'</span>
 							</div>';
@@ -110,12 +110,15 @@ get_header(); ?>
 			<div class="col-md-4">
 				<h2>Recently Discussed</h2>
 				<?php
-				$comments = get_ihpc_comments(3,'review');
+				//Getting reviews order by comment count
+				$comments = get_reviews(3,'comment_count');
+				//Getting the latest comments
+				//$comments = get_ihpc_comments(3,'review');
 				foreach ($comments as $key => $comment) {
 					echo '<div class="panel">
-							<div>'.$comment['excerpt'].'<br/>
-							<span>'.$comment['date'].'</span>
-							</div>
+							<a href="'.$comment['permalink'].'">'.$comment['title'].'</a>
+							<br/>
+							<span>'.$review['date'].'</span>							
 						</div>';
 				}
 				?>			
@@ -166,7 +169,17 @@ get_header(); ?>
 		<div class="row">
 			<div class="col-lg-9">
 				<h2>Hate Categories</h2>
-				<?php echo get_ihpc_categories('companiestax'); ?>
+				<?php 
+				$categories = get_ihpc_categories('companiestax');
+				foreach ($categories as $key => $category) {
+					echo "<div style='width:150px;height:150px' class='pull-left'>
+								<a href='".$category['permalink']."'>
+									<img class='img-responsive' src='".$category['img_url']."' /><br/>
+									<span>".$category['name']."</span>
+								</a>
+							</div>";
+				}
+				?>
 				<div class="clearfix"></div>
 				<div class="text-right"><a href="<?php site_url('review') ?>">Browse all reviews</a></div>
 			</div>

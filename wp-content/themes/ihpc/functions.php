@@ -844,19 +844,24 @@ function get_ihpc_categories($ihpc_taxonomy){
 					'number' => 24
 				);
 	$terms = get_terms( $args );
-	$cates = '';
+	$cates = array();
+	$i = 0;
 	foreach ($terms as $key => $term) {
 		$acf_term_format = $ihpc_taxonomy."_".$term->term_id;
 		$term_url = get_field('category_icon', $acf_term_format);
-		//if( !empty($term_url) ){
-			$cates .= "<div style='width:150px;height:150px' class='pull-left'>
-						<a href='".site_url('review')."'>
-							<img class='img-responsive' src='".$term_url."' /><br/>
-							<span>".$term->name."</span>
-						</a>
-					</div>";
-		//}		
-		
+		$cates[$i]['term_taxonomy_id'] = $term->term_id;
+		$cates[$i]['permalink'] 	= get_term_link($term->term_id);
+		$cates[$i]['img_url'] 		= $term_url;
+		$cates[$i]['term_id'] 		= $term->term_id;
+		$cates[$i]['name'] 			= $term->name;
+		$cates[$i]['slug'] 			= $term->slug;
+		$cates[$i]['term_group'] 	= $term->term_group;		
+		$cates[$i]['taxonomy'] 		= $term->taxonomy;
+		$cates[$i]['description'] 	= $term->description;
+		$cates[$i]['parent'] 		= $term->parent;
+		$cates[$i]['count'] 		= $term->count;
+		$cates[$i]['filter'] 		= $term->filter;
+		$i++;
 	}
 	return $cates;
 }
@@ -910,28 +915,30 @@ function get_companies($number_of_companies){
 /****
 * Getting reviews
 ****/
-function get_reviews( $number_of_reviews ){
+function get_reviews( $number_of_reviews, $orderby = 'date', $order = 'DESC' ){
 	$args = array(	'posts_per_page' => $number_of_reviews,
-					'post_type'	=> 'review'
+					'post_type'	=> 'review',
+					'orderby' 	=> $orderby,
+	    			'order' 	=> $order
 				);
 	$array 	= array();
 	$i 		= 0;
 	$the_query = new WP_Query( $args );
 	if ( $the_query->have_posts() ) {
 		while ( $the_query->have_posts() ) {
-			$the_query->the_post();
-			$array[$i]['title'] = get_the_title();
-			$array[$i]['excerpt'] = get_the_excerpt();
-			$array[$i]['content'] = get_the_content();
+			$the_query->the_post();			
+			$array[$i]['title'] 	= get_the_title();
+			$array[$i]['excerpt'] 	= get_the_excerpt();
+			$array[$i]['content'] 	= get_the_content();
 			$array[$i]['permalink'] = get_permalink();
-			$array[$i]['date'] = get_the_date();
+			$array[$i]['date'] 		= get_the_date();
 			$i++;
 		}		
 		wp_reset_postdata();
 		return $array;
 	}
 	else {
-	return $array;
+		return $array;
 	}
 }
 
@@ -961,7 +968,7 @@ function get_ihpc_comments( $number_of_comments, $post_type ){
 function get_company_reviews($company_id){
 	$args = array(	'posts_per_page' => -1,
 					'post_type'	=> 'review',
-					'meta_key'     => 'company_id_for_review',
+					'meta_key'     => 'REVIEW_COMPANYID',
 					'meta_value'   => $company_id,
 					'meta_compare' => '='
 				);
