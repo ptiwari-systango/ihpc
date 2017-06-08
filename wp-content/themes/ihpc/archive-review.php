@@ -38,9 +38,8 @@ get_header(); ?>
 					get_template_part( 'template-parts/post/content', 'review' );
 				endwhile;
 				the_posts_pagination( array(
-					'prev_text' => ihpc_get_svg( array( 'icon' => 'arrow-left' ) ) . '<span class="screen-reader-text">' . __( 'Previous page', 'ihpc' ) . '</span>',
-					'next_text' => '<span class="screen-reader-text">' . __( 'Next page', 'ihpc' ) . '</span>' . ihpc_get_svg( array( 'icon' => 'arrow-right' ) ),
-					'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'ihpc' ) . ' </span>',
+					'prev_text' => 'Prev',
+					'next_text' => 'Next'
 				) );
 			else :
 				get_template_part( 'template-parts/post/content', 'none' );
