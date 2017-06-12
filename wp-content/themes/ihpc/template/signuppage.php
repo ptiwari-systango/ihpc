@@ -148,7 +148,7 @@ if( !empty($_GET['success_msg']) ){
 				</div>
 				
 				<div class="check_mark mt-30">
-					<input type="checkbox" name="user_readed_tc" id="option1" value="1">
+					<input type="checkbox" required="required" name="user_readed_tc" id="option1" value="1">
 					<label for="option1"><small>I have read and agree to the I Hate Power Companies <a href="#x" class="red_link font-14">Terms of Service</a></small></label>				
 				</div>
 				
