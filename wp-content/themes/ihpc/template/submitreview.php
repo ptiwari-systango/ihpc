@@ -159,7 +159,7 @@ if( !empty($_POST) ){
 					<input type="text" class="form-control" name="product_or_service">
 				</div>
 				<div class="form-group">
-					<input type="checkbox" name="readed_term_of_services" value="1"> I have read and agree to the I Hate Power Companies Terms of Services
+					<input type="checkbox" required="required" name="readed_term_of_services" value="1"> I have read and agree to the I Hate Power Companies Terms of Services
 				</div>
 				<div class="form-group">
 					<?php 
