@@ -68,7 +68,7 @@ class ihpc_most_active_users extends WP_Widget {
 				$pro_pic = get_field('user_profile_pic','user_'.$user->data->ID);			
 				if( !empty($pro_pic) ){
 					$users_str .= "<li>
-									<a href='#'>
+									<a href='".get_author_posts_url($user->data->ID)."'>
 									<img src='$pro_pic' class='user-image' />
 									 <span>".$user->data->display_name."</span>
 									</a>
@@ -76,7 +76,7 @@ class ihpc_most_active_users extends WP_Widget {
 				}
 				else{
 					$users_str .= "<li>
-									<a href='#'>
+									<a href='".get_author_posts_url($user->data->ID)."'>
 									<img src='".get_stylesheet_directory_uri()."/assets/images/avatar_standart_light.png' class='user-image' />
 									<span>".$user->data->display_name."</span></a>
 								</li>";
@@ -84,7 +84,7 @@ class ihpc_most_active_users extends WP_Widget {
 			}
 			$i++;
 		}
-		$users_str .= "</ul>";
+		$users_str .= "</ul><div><a href='".site_url('author/view_all_author/')."'>More</a></div>";
 		echo __( $users_str , 'wpb_widget_domain' );
 		echo $args['after_widget'];		
 	}

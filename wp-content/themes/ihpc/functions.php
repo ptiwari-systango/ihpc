@@ -733,7 +733,46 @@ include_once 'ihpc-widgets/most-active-companies.php';
 /****
 * Getting most hatted power companies
 ****/
-function most_hatted_power_companies(){
+function get_companies_by_date($posts_per_page,$index){
+	//Posts from current week
+	if($index == 1){
+		$dateQ = array( 'year' => date( 'Y' ), 'week' => date( 'W' ) );
+	}
+	//Posts 1 week ago
+	if($index == 2){
+		$dateQ = array( 'year' => date( 'Y' ), 'week' => date( 'W', strtotime('-1 Week') ) );
+	}
+	//Posts 1 month ago
+	if($index == 3){
+		$dateQ = array( 'year' => date( 'Y' ), 'month' => date( 'm', strtotime('-1 Month') ) );
+	}
+	$args = array(	'posts_per_page' => $posts_per_page,
+					'post_type'	=> 'companies',
+					'meta_key'  => 'ratings_average',
+					'orderby'  	=> array( 'meta_value_num' => 'ASC', 'title' => 'ASC' ),
+					'date_query' => array($dateQ)
+				);
+	$array = array();
+	$i = 0;
+	$the_query = new WP_Query( $args );
+	if ( $the_query->have_posts() ) {		
+		while ( $the_query->have_posts() ) {
+			$the_query->the_post();
+			$ratting = get_post_meta(get_the_ID(), 'ratings_average', true);
+			$nu_user_ratted = get_post_meta(get_the_ID(), 'ratings_users', true);			
+			$array[$i]['url'] 			= get_permalink();
+			$array[$i]['title'] 		= get_the_title();
+			$array[$i]['date'] 			= get_the_date();
+			$array[$i]['ihpc_ratings'] 	= $ratting;
+			$array[$i]['nu_user_ratted'] 	= $nu_user_ratted;
+			$i++;	
+		}
+	}
+	return $array;
+}
+
+
+/*function most_hatted_power_companies(){
 	$args = array(	'posts_per_page' => 20,
 					'post_type'	=> 'companies',
 					'meta_key'  => 'ratings_average',
@@ -757,8 +796,7 @@ function most_hatted_power_companies(){
 			if( ($post_date>$last_week1) ){
 				$html1 .= '<li>
 							<a href="'.get_permalink().'">'.get_the_title().'</a> 
-							<span class="user-number">'.$nu_user_ratted.'</span>
-							
+							<span class="user-number">'.$nu_user_ratted.'</span>							
 						</li>';
 			}			
 			//Getting last week posts
@@ -787,7 +825,7 @@ function most_hatted_power_companies(){
 	} else {
 		return 'No data';
 	}	
-}
+}*/
 
 /****
 * Getting meta values from db
@@ -884,7 +922,8 @@ function get_companies_by_ratings($number_of_companies,$orderBy){
 			$ratting = get_post_meta(get_the_ID(), 'ratings_average', true);			
 			$array[$i]['url'] 			= get_permalink();
 			$array[$i]['title'] 		= get_the_title();
-			$array[$i]['date'] 			= get_the_date();
+			//$array[$i]['date'] 			= get_the_date();
+			$array[$i]['date'] 			= human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago';
 			$array[$i]['ihpc_ratings'] 	= $ratting;			
 			$i++;	
 		}
@@ -931,7 +970,8 @@ function get_reviews( $number_of_reviews, $orderby = 'date', $order = 'DESC' ){
 			$array[$i]['excerpt'] 	= get_the_excerpt();
 			$array[$i]['content'] 	= get_the_content();
 			$array[$i]['permalink'] = get_permalink();
-			$array[$i]['date'] 		= get_the_date();
+			//$array[$i]['date'] 		= get_the_date();
+			$array[$i]['date'] 		= human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago';
 			$i++;
 		}		
 		wp_reset_postdata();
@@ -1033,22 +1073,61 @@ function register_company_callback(){
 /***
 * making end points so no need to add pages
 ***/
-add_action('init', 'ihpc_add_endpoints');
+
+/*add_action('init', 'ihpc_add_endpoints');
 function ihpc_add_endpoints(){
 	add_rewrite_endpoint('companiestax/view_all_companiestax/', EP_ALL);
-}
+	add_rewrite_endpoint('author/view_all_author/', EP_ALL);
+}*/
 
-function makeplugins_json_template_redirect() {
+function companies_template_redirect() {
     global $wp_query;
-    // if this is not a request for json or a singular object then bail
-    if (  $wp_query->query_vars['companiestax'] != 'view_all_companiestax' ){
-    	return;
+    /*echo "<pre>";
+    print_r($wp_query);
+    echo "</pre>";*/
+    if( $wp_query->query_vars['author_name'] == 'view_all_author' ){
+    	include dirname( __FILE__ ) . '/template/view_all_author-template.php';
+    }    
+    else if (  $wp_query->query_vars['companiestax'] == 'view_all_companiestax' ){
+    	include dirname( __FILE__ ) . '/template/view_all_companiestax-template.php';
     }        
  	else{
- 		$categoryName = $wp_query->query_vars['companiestax']; 		
- 		// include custom template
-    	include dirname( __FILE__ ) . '/template/view_all_companiestax-template.php';
+ 		return;
  	}
     exit;
 }
-add_action( 'template_redirect', 'makeplugins_json_template_redirect' );
+
+add_action( 'template_redirect', 'companies_template_redirect' );
+/** END **/
+
+
+function get_post_by_category($post_type,$offset,$post_per_page,$category_name){
+	$args = array(	'post_type' => $post_type,
+					'posts_per_page' => $post_per_page,
+					'category_name' => $category_name,
+					'offset' => $offset
+				);
+	$the_query 	= new WP_Query( $args );
+	$array 		= array();
+	$i = 0;
+	// The Loop
+	if ( $the_query->have_posts() ) {
+		while ( $the_query->have_posts() ) {
+			$the_query->the_post();
+			$array[$i]['id'] 		= get_the_ID();
+			$array[$i]['title'] 	= get_the_title();
+			$array[$i]['excerpt'] 	= get_the_excerpt();
+			$array[$i]['content'] 	= get_the_content();
+			$array[$i]['permalink'] = get_permalink();
+			$array[$i]['date'] 		= get_the_date();
+			$array[$i]['img'] = get_the_post_thumbnail_url(get_the_ID(),'medium');
+			$i++;
+		}
+		/* Restore original Post Data */
+		wp_reset_postdata();
+		return $array;
+	} 
+	else {
+		return $array;
+	}
+}

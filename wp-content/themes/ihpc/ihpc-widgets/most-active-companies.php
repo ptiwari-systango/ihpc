@@ -65,15 +65,23 @@ class ihpc_most_active_companies extends WP_Widget {
 							'order' 		 => 'DESC'
 						);
 		}		
-		$users_str = '';
+		$users_str = '<ul class="w-active-users">';
 		$the_query = new WP_Query( $args );
 		if ( $the_query->have_posts() ) {		
 			while ( $the_query->have_posts() ) {
 				$the_query->the_post();
-				$ratting = get_post_meta(get_the_ID(), 'ratings_average', true);
-				$users_str .= '<div><a href="'.get_permalink().'">'.get_the_title().'</a></div>';
+				$ratting 	= get_post_meta(get_the_ID(), 'ratings_average', true);
+				$thumb_url 	= get_the_post_thumbnail_url(get_the_ID());
+				if( empty($thumb_url) )
+					$thumb_url = get_stylesheet_directory_uri().'/assets/images/avatar_standart_light.png';
+				$users_str .= '<li>
+								<a href="'.get_permalink().'">
+									<img src="'.$thumb_url.'" style="width:100px;border-radius:50%">'.get_the_title().'
+								</a>
+							</li>';
 			}
 		}
+		$users_str .= '</ul><div><a href="'.site_url('companies').'" class="more-link">More</a></div>';
 		echo __( $users_str , 'wpb_widget_domain' );
 		echo $args['after_widget'];		
 	}
