@@ -51,7 +51,7 @@ class ihpc_most_active_users extends WP_Widget {
 		if ( ! empty( $title ) )
 		echo $args['before_title'] . $title . $args['after_title'];		
 		$users_str = '';
-
+		$users_str = "<ul class='w-active-users'>";
 		if( $instance['sort_by'] == 'activity_rank' ){
 			$args1 = array(	'meta_key' => 'activity_rank',
 							'orderby'  => 'meta_value_num',
@@ -67,20 +67,24 @@ class ihpc_most_active_users extends WP_Widget {
 			if( $i < $instance['no_users'] ){
 				$pro_pic = get_field('user_profile_pic','user_'.$user->data->ID);			
 				if( !empty($pro_pic) ){
-					$users_str .= "<div>
-									<img src='$pro_pic' class='img-responsive' />
-									<span>".$user->data->display_name."</span>
-								</div>";
+					$users_str .= "<li>
+									<a href='#'>
+									<img src='$pro_pic' class='user-image' />
+									 <span>".$user->data->display_name."</span>
+									</a>
+								</li>";
 				}
 				else{
-					$users_str .= "<div>
-									<span>".$user->data->display_name."</span>
-								</div>";
+					$users_str .= "<li>
+									<a href='#'>
+									<img src='".get_stylesheet_directory_uri()."/assets/images/avatar_standart_light.png' class='user-image' />
+									<span>".$user->data->display_name."</span></a>
+								</li>";
 				}
 			}
 			$i++;
 		}
-
+		$users_str .= "</ul>";
 		echo __( $users_str , 'wpb_widget_domain' );
 		echo $args['after_widget'];		
 	}

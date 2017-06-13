@@ -357,7 +357,7 @@ function ihpc_widgets_init() {
 		'description'   => __( 'Add widgets here to appear in your frontpage.', 'ihpc' ),
 		'before_widget' => '<section id="%1$s" class="widget hot-topics %2$s">',
 		'after_widget'  => '</section>',
-		'before_title'  => '<h2 class="widget-title sub-title">',
+		'before_title'  => '<h2 class="widget-title sub-title"><span class="icon"></span>',
 		'after_title'   => '</h2>',
 	) );
 
@@ -755,34 +755,34 @@ function most_hatted_power_companies(){
 
 			//This week posts
 			if( ($post_date>$last_week1) ){
-				$html1 .= '<div>
+				$html1 .= '<li>
 							<a href="'.get_permalink().'">'.get_the_title().'</a> 
-							<span>'.$nu_user_ratted.'</span>
-							<span>'.get_the_date().'</span>
-						</div>';
+							<span class="user-number">'.$nu_user_ratted.'</span>
+							
+						</li>';
 			}			
 			//Getting last week posts
 			if( ($post_date<=$last_week1) && ($post_date > $last_week2) ){
-				$html2 .= '<div>
+				$html2 .= '<li>
 							<a href="'.get_permalink().'">'.get_the_title().'</a> 
-							<span>'.$nu_user_ratted.'</span>
-							<span>'.get_the_date().'</span>
-						</div>';
+							<span class="user-number">'.$nu_user_ratted.'</span>
+								
+						</li>';
 			}
 			//Getting last month posts
 			if( ($post_date < $last_month1) && ($post_date > $last_month2) ){
-				$html3 .= '<div>
+				$html3 .= '<li>
 							<a href="'.get_permalink().'">'.get_the_title().'</a> 
-							<span>'.$nu_user_ratted.'</span>
-							<span>'.get_the_date().'</span>
-						</div>';
+							<span class="user-number">'.$nu_user_ratted.'</span>
+						  </li>';
 			}			
 		}
 		wp_reset_postdata();
 		$rtn = '';
-		$rtn .= "<div class='col-md-4'><h4>Now</h4>".$html1."</div>";
-		$rtn .= "<div class='col-md-4'><h4>Last week</h4>".$html2."</div>";
-		$rtn .= "<div class='col-md-4'><h4>Last month</h4>".$html3."</div>";
+		$rtn .= "<div class='col-md-4 user-list'><h4>Now</h4><ul>".$html1."</ul></div>";
+		$rtn .= "<div class='col-md-4 user-list'><h4>Last Week</h4><ul>".$html2."</ul></div>";
+		$rtn .= "<div class='col-md-4 user-list'><h4>Last Month</h4><ul>".$html3."</ul></div>";
+
 		return $rtn;
 	} else {
 		return 'No data';
@@ -1029,3 +1029,26 @@ function register_company_callback(){
 		}
 	}
 }
+
+/***
+* making end points so no need to add pages
+***/
+add_action('init', 'ihpc_add_endpoints');
+function ihpc_add_endpoints(){
+	add_rewrite_endpoint('companiestax/view_all_companiestax/', EP_ALL);
+}
+
+function makeplugins_json_template_redirect() {
+    global $wp_query;
+    // if this is not a request for json or a singular object then bail
+    if (  $wp_query->query_vars['companiestax'] != 'view_all_companiestax' ){
+    	return;
+    }        
+ 	else{
+ 		$categoryName = $wp_query->query_vars['companiestax']; 		
+ 		// include custom template
+    	include dirname( __FILE__ ) . '/template/view_all_companiestax-template.php';
+ 	}
+    exit;
+}
+add_action( 'template_redirect', 'makeplugins_json_template_redirect' );

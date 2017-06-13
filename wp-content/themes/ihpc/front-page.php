@@ -25,7 +25,7 @@ get_header(); ?>
 			get_template_part( 'template-parts/post/content', 'none' );
 		endif; 
 		?>
-		<div class="more_post_link text-right"><a href="<?php echo site_url('review') ?>">More featured reviews</a></div>
+		<div class="more_post_link text-right"><a href="<?php echo site_url('review') ?>" class="more-link">More featured reviews <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/aero.png"> </a></div>
 		<?php
 		// Get each of our panels and show the post data.
 		if ( 0 !== ihpc_panel_count() || is_customize_preview() ) : // If we have pages to show.
@@ -49,20 +49,25 @@ get_header(); ?>
 		<!-- Most recent review section: Start -->
 		<div class="row">
 			<div class="col-md-12 text-center">
-				<?php
+			<div class="testimonials clearfix">
+				<p><?php
 					$review1 = get_reviews(1);
 					echo $review1[0]['excerpt'];
-					echo "<a href='".$review1[0]['permalink']."'>Read More</a>";
-					?>
+					echo "<a href='".$review1[0]['permalink']."' class='read-full-review'>Read full review</a>";
+					?></p>
+				</div>	
 			</div>
 		</div>		
 		<!-- End -->
 
 		<!-- Most hated power companies section: start -->
 		<div class="row">
-			<div class="col-md-12"><h2>Most hated power companies</h2></div>			
-			<?php echo most_hatted_power_companies(); ?>
-			<div class="clearfix text-right"><a href="<?php echo site_url('companies') ?>">More Trends</a></div>
+			<div class="col-md-12">
+			<div class="mhpc-home">
+				<h1>Most hated power companies</h1></div>			
+				<div class="row"><?php echo most_hatted_power_companies(); ?></div>
+				<div class="col-sm-12 clearfix text-right"><a href="<?php echo site_url('companies') ?>" class="more-link">More Trends <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/aero.png"> </a></div>
+			</div>
 		</div>		
 		<!-- End -->
 
@@ -75,27 +80,32 @@ get_header(); ?>
 		<!-- Top rated power companies section: Start -->
 		<div class="row">
 			<div class="col-md-12">
-				<h2>Top Rated Power Companies</h2>
+			<div class="trpc-home user-list">
+				<h1>Top Rated Power Companies</h1>
+				<ul>
 				<?php 
 					$companies = get_companies_by_ratings(-1,'DESC');
 					foreach ($companies as $key => $company) {						
 						if( $company['ihpc_ratings'] > 4){
-							echo '<div>
+							echo '<li>
 								<a href="'.$company['url'].'">'.$company['title'].'</a> 
-								<span>'.$company['ihpc_ratings'].' stars</span>
-							</div>';
+								<span class="user-number">'.$company['ihpc_ratings'].' stars</span>
+								</li>';
 						}
 					}
 				?>
-				<div class="clearfix text-right"><a href="<?php echo site_url('companies') ?>">Show more companies</a></div>
+				</ul>
+				<div class="clearfix text-right"><a href="<?php echo site_url('companies') ?>" class="more-link">Show More Companies <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/aero.png"> </a></div>
+			</div>
 			</div>
 		</div>		
 		<!-- End -->
-
+<div class="clearfix"></div>
 		<!-- Latest review, recently discussed and top rated section: Start -->
 		<div class="row">
+		<div class="mhpc-home user-list">
 			<div class="col-md-4">
-				<h2>Latest Reviews</h2>
+				<h4>Latest Reviews</h4>
 				<?php 
 				$reviews = get_reviews(3);
 				foreach ($reviews as $key => $review) {
@@ -108,7 +118,7 @@ get_header(); ?>
 				?>
 			</div>
 			<div class="col-md-4">
-				<h2>Recently Discussed</h2>
+				<h4>Recently Discussed</h4>
 				<?php
 				//Getting reviews order by comment count
 				$comments = get_reviews(3,'comment_count');
@@ -124,7 +134,7 @@ get_header(); ?>
 				?>			
 			</div>
 			<div class="col-md-4">
-				<h2>Most Hated</h2>
+				<h4>Most Hated</h4>
 				<?php 
 					$companies = get_companies_by_ratings(3,'ASC');
 					foreach ($companies as $key => $company) {						
@@ -137,9 +147,10 @@ get_header(); ?>
 				?>
 			</div>			
 		</div>
+		</div>
 		<!-- End -->
 	</div><!-- #primary -->
-	<aside class="col-lg-3" role="complementary">
+	<aside class="col-lg-3 right-sidebar" role="complementary">
 		<?php
 		if (function_exists ('adinserter')){
 			echo adinserter (1);
@@ -163,25 +174,163 @@ get_header(); ?>
 	?>
 	<!-- Add section for block 3 : End -->
 </div>
+</div>
+</div>
+</div>
 
+<div class="clearfix"></div>
+<div class="slider-home">	
+	<div class="container">
+	<div class="col-sm-12">
+		<h1>Power Companies in the News</h1>
+		<div id="myCarousel" class="carousel slide ">
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+    <div class="item active">
+      <div class="row">
+        <div class="col-sm-3">
+		  <div class="card hover15"><a href="#x"><figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/slider.jpg" alt="Image" class="img-responsive card-img-top"></figure></a>
+			<div class="card-block">
+			  
+			  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			   </div>
+		  </div>
+		</div>
+        <div class="col-sm-3">
+		  <div class="card hover15"><a href="#x"><figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/slider.jpg" alt="Image" class="img-responsive card-img-top"></figure></a>
+			<div class="card-block">
+			  
+			  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			   </div>
+		  </div>
+		</div>
+        <div class="col-sm-3">
+		  <div class="card hover15"><a href="#x"><figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/slider.jpg" alt="Image" class="img-responsive card-img-top"></figure></a>
+			<div class="card-block">
+			  
+			  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			   </div>
+		  </div>
+		</div>
+        <div class="col-sm-3">
+		  <div class="card hover15"><a href="#x"><figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/slider.jpg" alt="Image" class="img-responsive card-img-top"></figure></a>
+			<div class="card-block">
+			  
+			  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			   </div>
+		  </div>
+		</div>
+      </div>
+      <!--/row-->
+    </div>
+    <!--/item-->
+    <div class="item">
+      <div class="row">
+        <div class="col-sm-3">
+		  <div class="card hover15"><a href="#x"><figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/slider.jpg" alt="Image" class="img-responsive card-img-top"></figure></a>
+			<div class="card-block">
+			  
+			  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			   </div>
+		  </div>
+		</div>
+        <div class="col-sm-3">
+		  <div class="card hover15"><a href="#x"><figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/slider.jpg" alt="Image" class="img-responsive card-img-top"></figure></a>
+			<div class="card-block">
+			  
+			  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			   </div>
+		  </div>
+		</div>
+        <div class="col-sm-3">
+		  <div class="card hover15"><a href="#x"><figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/slider.jpg" alt="Image" class="img-responsive card-img-top"></figure></a>
+			<div class="card-block">
+			  
+			  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			   </div>
+		  </div>
+		</div>
+        <div class="col-sm-3">
+		  <div class="card hover15"><a href="#x"><figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/slider.jpg" alt="Image" class="img-responsive card-img-top"></figure></a>
+			<div class="card-block">
+			  
+			  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			   </div>
+		  </div>
+		</div>
+      </div>
+      <!--/row-->
+    </div>
+    <!--/item-->
+    <div class="item">
+      <div class="row">
+        <div class="col-sm-3">
+		  <div class="card hover15"><a href="#x"><figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/slider.jpg" alt="Image" class="img-responsive card-img-top"></figure></a>
+			<div class="card-block">
+			  
+			  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			   </div>
+		  </div>
+		</div>
+        <div class="col-sm-3">
+		  <div class="card hover15"><a href="#x"><figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/slider.jpg" alt="Image" class="img-responsive card-img-top"></figure></a>
+			<div class="card-block">
+			  
+			  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			   </div>
+		  </div>
+		</div>
+        <div class="col-sm-3">
+		  <div class="card hover15"><a href="#x"><figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/slider.jpg" alt="Image" class="img-responsive card-img-top"></figure></a>
+			<div class="card-block">
+			  
+			  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			   </div>
+		  </div>
+		</div>
+        <div class="col-sm-3">
+		  <div class="card hover15"><a href="#x"><figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/slider.jpg" alt="Image" class="img-responsive card-img-top"></figure></a>
+			<div class="card-block">
+			  
+			  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			   </div>
+		  </div>
+		</div>
+      </div>
+      <!--/row-->
+    </div>
+    <!--/item-->
+  </div>
+  <!--/carousel-inner-->
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="fa fa-chevron-left" aria-hidden="true"></i></a> <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="fa fa-chevron-right" aria-hidden="true"></i></a> </div>
+<!--/myCarousel-->
+</div>
+		
+	</div>
+</div>
+
+<div class="site-content-contain">
+<div class="site-content">
 <div id="bottom-section">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-9">
-				<h2>Hate Categories</h2>
+			<div class="col-lg-9 hc-home">
+				<h1>Hate Categories</h1>
+				<div class="row">
 				<?php 
 				$categories = get_ihpc_categories('companiestax');
 				foreach ($categories as $key => $category) {
-					echo "<div style='width:150px;height:150px' class='pull-left'>
+					echo "<div class='col-sm-2 text-center cat-icons'>
 								<a href='".$category['permalink']."'>
-									<img class='img-responsive' src='".$category['img_url']."' /><br/>
+									<img class='img-responsive' src='".$category['img_url']."' />
 									<span>".$category['name']."</span>
 								</a>
 							</div>";
 				}
 				?>
 				<div class="clearfix"></div>
-				<div class="text-right"><a href="<?php site_url('review') ?>">Browse all reviews</a></div>
+				<div class="col-sm-12 text-right"><a href="<?php echo site_url('/companiestax/view_all_companiestax') ?>" class="more-link">Browse all reviews <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/aero.png"> </a></div>
+				</div>
 			</div>
 			<div class="col-lg-3">
 				<?php
