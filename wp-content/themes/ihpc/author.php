@@ -37,61 +37,63 @@ if( empty($pro_pic) )
     </div>
     <div class="row">
         <div class="col-md-6">
-            <a href="?reviews"><?php echo $nickname ?>'s Review</a>
+            <a href="?tab=reviews"><?php echo $nickname ?>'s Review</a>
         </div>
         <div class="col-md-6">
-            <a href="?comments"><?php echo $nickname ?>'s Comments</a>
+            <a href="?tab=comments"><?php echo $nickname ?>'s Comments</a>
         </div>
     </div>
-    <!-- Row for Reviews -->
-    <div class="row">
-        <h1><?php echo $nickname ?>'s Review</h1>
-        <?php 
-            $args = array(  'posts_per_page' => -1,
-                            'post_type' => 'review',
-                            'orderby'   => 'date',
-                            'order'     => 'DESC',
-                            'author' => $authorId
-                        );
-            $array      = array();
-            $the_query  = new WP_Query( $args );
-            if ( $the_query->have_posts() ) :
-                while ( $the_query->have_posts() ) :
-                    $the_query->the_post(); 
-                    $pid = get_the_ID();
-                    ?>
-                    <div class="col-md-12 review-<?php echo $pid ?>">
-                        <h3><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
-                        <ul class="review-fields">            
-                            <?php 
-                            $company_id = get_post_meta( $pid, 'REVIEW_COMPANYID', true );
-                            if( !empty($company_id) ){
-                                $company_name   = get_the_title( $company_id );
-                                $company_url    = get_the_permalink( $company_id );
-                                echo '<li class="normal-size">
-                                        <i class="fa fa-building-o" aria-hidden="true"></i>
-                                        <a href="'.$company_url.'"><span itemprop="name">'.$company_name.'</span></a>
-                                    </li>';
-                            }
-                            ?>          
-                            <li><i class="fa fa-clock-o" aria-hidden="true"></i><span class="fs12"><?php echo get_the_date() ?></span></li>
-                            <li><i class="fa fa-clock-o" aria-hidden="true"></i><span class="fs12"><?php echo comments_number(0,1,'%') ?></span></li>
-                            <li><i class="fa fa-user" aria-hidden="true"></i><span class="fs12">by </span><span class="fs12"><?php echo get_the_author() ?></span></li>          
-                        </ul>
-                        <div><?php echo get_the_excerpt(); ?></div>
-                        <div><a href="<?php echo get_the_permalink(); ?>">Read More</a></div>
-                    </div>                        
-                <?php 
-                endwhile;
-                wp_reset_postdata();
-            else:
-                echo "<div class='col-md-12'>No reviews</div>";
-            endif;
-        ?>
-    </div>
-    <!-- End -->
-
-    <!-- Row for comments -->
+    
+    <?php if( ($_GET['tab'] == 'reviews') || !isset($_GET['tab']) ): ?>
+        <!-- Row for Reviews -->
+        <div class="row">
+            <h1><?php echo $nickname ?>'s Review</h1>
+            <?php 
+                $args = array(  'posts_per_page' => -1,
+                                'post_type' => 'review',
+                                'orderby'   => 'date',
+                                'order'     => 'DESC',
+                                'author' => $authorId
+                            );
+                $array      = array();
+                $the_query  = new WP_Query( $args );
+                if ( $the_query->have_posts() ) :
+                    while ( $the_query->have_posts() ) :
+                        $the_query->the_post(); 
+                        $pid = get_the_ID();
+                        ?>
+                        <div class="col-md-12 review-<?php echo $pid ?>">
+                            <h3><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
+                            <ul class="review-fields">            
+                                <?php 
+                                $company_id = get_post_meta( $pid, 'REVIEW_COMPANYID', true );
+                                if( !empty($company_id) ){
+                                    $company_name   = get_the_title( $company_id );
+                                    $company_url    = get_the_permalink( $company_id );
+                                    echo '<li class="normal-size">
+                                            <i class="fa fa-building-o" aria-hidden="true"></i>
+                                            <a href="'.$company_url.'"><span itemprop="name">'.$company_name.'</span></a>
+                                        </li>';
+                                }
+                                ?>          
+                                <li><i class="fa fa-clock-o" aria-hidden="true"></i><span class="fs12"><?php echo get_the_date() ?></span></li>
+                                <li><i class="fa fa-clock-o" aria-hidden="true"></i><span class="fs12"><?php echo comments_number(0,1,'%') ?></span></li>
+                                <li><i class="fa fa-user" aria-hidden="true"></i><span class="fs12">by </span><span class="fs12"><?php echo get_the_author() ?></span></li>          
+                            </ul>
+                            <div><?php echo get_the_excerpt(); ?></div>
+                            <div><a href="<?php echo get_the_permalink(); ?>">Read More</a></div>
+                        </div>                        
+                    <?php 
+                    endwhile;
+                    wp_reset_postdata();
+                else:
+                    echo "<div class='col-md-12'>No reviews</div>";
+                endif;
+            ?>
+        </div>
+        <!-- End -->
+    <?php else: ?>
+        <!-- Row for comments -->
         <div class="row">
             <h1><?php echo $nickname ?>'s Comments</h1>
             <?php 
@@ -117,7 +119,9 @@ if( empty($pro_pic) )
             endif;
             ?>
         </div>
-    <!-- End -->
+        <!-- End -->
+    <?php endif; ?>
+
 </div>
 
 <?php get_footer(); ?>

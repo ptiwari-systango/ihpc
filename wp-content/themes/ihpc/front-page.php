@@ -297,16 +297,18 @@ get_header(); ?>
 				<?php 
 				$categories = get_ihpc_categories('companiestax');
 				foreach ($categories as $key => $category) {
-					echo "<div class='col-sm-2 text-center cat-icons'>
+					if( $category['slug'] != 'all_categories' && $category['slug'] != 'all_users' ){
+						echo "<div class='col-sm-2 text-center cat-icons'>
 								<a href='".$category['permalink']."'>
 									<img class='img-responsive' src='".$category['img_url']."' />
 									<span>".$category['name']."</span>
 								</a>
 							</div>";
+					}					
 				}
 				?>
 				<div class="clearfix"></div>
-				<div class="col-sm-12 text-right"><a href="<?php echo site_url('/companiestax/view_all_companiestax') ?>" class="more-link">Browse all reviews <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/aero.png"> </a></div>
+				<div class="col-sm-12 text-right"><a href="<?php echo site_url('/companiestax/all_categories') ?>" class="more-link">Browse all reviews <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/aero.png"> </a></div>
 				</div>
 			</div>
 			<div class="col-lg-3">

@@ -875,11 +875,12 @@ function top_locations(){
 /****
 * Getting categories
 ****/
-function get_ihpc_categories($ihpc_taxonomy){
+function get_ihpc_categories($ihpc_taxonomy,$number=24,$parent=0){
 	$args = array(	'taxonomy' => $ihpc_taxonomy,
 					'hide_empty' => false,
 					'orderby'=>'name',
-					'number' => 24
+					'number' => $number,
+					'parent' => $parent
 				);
 	$terms = get_terms( $args );
 	$cates = array();
@@ -1069,37 +1070,6 @@ function register_company_callback(){
 		}
 	}
 }
-
-/***
-* making end points so no need to add pages
-***/
-
-/*add_action('init', 'ihpc_add_endpoints');
-function ihpc_add_endpoints(){
-	add_rewrite_endpoint('companiestax/view_all_companiestax/', EP_ALL);
-	add_rewrite_endpoint('author/view_all_author/', EP_ALL);
-}*/
-
-function companies_template_redirect() {
-    global $wp_query;
-    /*echo "<pre>";
-    print_r($wp_query);
-    echo "</pre>";*/
-    if( $wp_query->query_vars['author_name'] == 'view_all_author' ){
-    	include dirname( __FILE__ ) . '/template/view_all_author-template.php';
-    }    
-    else if (  $wp_query->query_vars['companiestax'] == 'view_all_companiestax' ){
-    	include dirname( __FILE__ ) . '/template/view_all_companiestax-template.php';
-    }        
- 	else{
- 		return;
- 	}
-    exit;
-}
-
-add_action( 'template_redirect', 'companies_template_redirect' );
-/** END **/
-
 
 function get_post_by_category($post_type,$offset,$post_per_page,$category_name){
 	$args = array(	'post_type' => $post_type,

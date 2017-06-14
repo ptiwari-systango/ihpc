@@ -84,7 +84,7 @@ class ihpc_most_active_users extends WP_Widget {
 			}
 			$i++;
 		}
-		$users_str .= "</ul><div><a href='".site_url('author/view_all_author/')."'>More</a></div>";
+		$users_str .= "</ul><div><a href='".site_url('companiestax/all_users/')."'>More</a></div>";
 		echo __( $users_str , 'wpb_widget_domain' );
 		echo $args['after_widget'];		
 	}
