@@ -15,39 +15,45 @@ if( empty($pro_pic) )
 ?>
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h2 class="text-center"><?php echo $nickname; ?></h2>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-3">
+	<div class="author-info">
+
+	
+    <div id="profile-info" class="row">
+        <div class="avatar col-sm-2">
             <img src="<?php echo $pro_pic ?>" class="img-responsive">
         </div>
-        <div class="col-md-9">
+        <div class="column col-sm-10">
+			<div class="heading-group">         
+			  <h2 class="text-center"><?php echo $nickname; ?></h2>
+			</div>
             <dl>
                 <dt>Joined</dt>
-                <dd><a href="<?php echo $curauth->user_url; ?>"><?php echo $user_register; ?></a></dd>
+                <dd><?php echo $user_register; ?> </dd>
+			</dl>
+			 <dl>
                 <dt>Last Seen</dt>
                 <dd>June 5, 2017</dd>
+			  </dl>	
+			    <dl>
                 <dt>Location</dt>
                 <dd>Naples, Florida</dd>
             </dl>
+			<div class="clearfix"></div>
+			
+			 <div class="btn-group tab-button">
+				 <a href="?tab=reviews"><i class="fa fa-link" aria-hidden="true"></i> <?php echo $nickname ?>'s Review</a>
+				<a href="?tab=comments"><i class="fa fa-link" aria-hidden="true"></i> <?php echo $nickname ?>'s Comments</a>
+			</div> 			
         </div>
+    </div>	
     </div>
-    <div class="row">
-        <div class="col-md-6">
-            <a href="?tab=reviews"><?php echo $nickname ?>'s Review</a>
-        </div>
-        <div class="col-md-6">
-            <a href="?tab=comments"><?php echo $nickname ?>'s Comments</a>
-        </div>
-    </div>
-    
-    <?php if( ($_GET['tab'] == 'reviews') || !isset($_GET['tab']) ): ?>
+ <?php if( ($_GET['tab'] == 'reviews') || !isset($_GET['tab']) ): ?>
         <!-- Row for Reviews -->
-        <div class="row">
+        <div class="row" id="review_page">
+			<div class="col-sm-12 user-list-off-comment">
+			
             <h1><?php echo $nickname ?>'s Review</h1>
+			
             <?php 
                 $args = array(  'posts_per_page' => -1,
                                 'post_type' => 'review',
@@ -62,9 +68,14 @@ if( empty($pro_pic) )
                         $the_query->the_post(); 
                         $pid = get_the_ID();
                         ?>
-                        <div class="col-md-12 review-<?php echo $pid ?>">
-                            <h3><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
-                            <ul class="review-fields">            
+            
+			            <div class="col-md-12 user-list-off-comment-item review-<?php echo $pid ?>">
+						
+						<header class="entry-header">
+						  <h2 class="entry-title">  
+						  	<a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a>
+						  </h2>
+					  <ul class="review-fields">            
                                 <?php 
                                 $company_id = get_post_meta( $pid, 'REVIEW_COMPANYID', true );
                                 if( !empty($company_id) ){
@@ -80,8 +91,14 @@ if( empty($pro_pic) )
                                 <li><i class="fa fa-clock-o" aria-hidden="true"></i><span class="fs12"><?php echo comments_number(0,1,'%') ?></span></li>
                                 <li><i class="fa fa-user" aria-hidden="true"></i><span class="fs12">by </span><span class="fs12"><?php echo get_the_author() ?></span></li>          
                             </ul>
-                            <div><?php echo get_the_excerpt(); ?></div>
-                            <div><a href="<?php echo get_the_permalink(); ?>">Read More</a></div>
+						</header>
+						<div class="entry-content col-sm-10 row">
+								<p>
+								<?php echo get_the_excerpt(); ?>
+								<a href="<?php echo get_the_permalink(); ?>" class="more-link unbold-text">Read More</a>
+								</p>
+							</div>
+
                         </div>                        
                     <?php 
                     endwhile;
@@ -91,10 +108,12 @@ if( empty($pro_pic) )
                 endif;
             ?>
         </div>
+		</div>
         <!-- End -->
     <?php else: ?>
         <!-- Row for comments -->
-        <div class="row">
+        <div class="row" id="review_page">
+		
             <h1><?php echo $nickname ?>'s Comments</h1>
             <?php 
             $args = array( 'author__in' => array($authorId),
@@ -103,14 +122,20 @@ if( empty($pro_pic) )
             $comments   = get_comments($args);
             if( !empty($comments) ):
                 foreach($comments as $comment) : ?>
-                    <div class="col-md-12">                    
-                        <h2>TO:<a href="<?php echo get_the_permalink( $comment->comment_post_ID ); ?>"><?php echo get_the_title($comment->comment_post_ID) ?></a></h2>
-                        <h6>
-                            <?php echo "Date: ".$comment->comment_date ?>
-                            <?php echo "Location: ".$comment->comment_author_IP ?>
-                        </h6>
-                        <div class="pull-left"><img width="200" src="<?php echo $pro_pic ?>" class="img-responsive"></div>                   
-                        <div class="pull-right text-left"><?php echo $comment->comment_content ?></div>
+                    <div class="col-md-12 user-list-off-comment-item">   
+					
+					<header class="entry-header">
+						  <h2 class="entry-title">  
+							<a href="<?php echo get_the_permalink( $comment->comment_post_ID ); ?>"><?php echo get_the_title($comment->comment_post_ID) ?></a>
+						  </h2>
+						  
+						    <ul class="review-fields">            
+                                <li><i class="fa fa-clock-o" aria-hidden="true"></i><span class="fs12"><?php echo "Date: ".$comment->comment_date ?></span></li>
+                                <li><i class="fa fa-map-marker" aria-hidden="true"></i><span class="fs12"><?php echo "Location: ".$comment->comment_author_IP ?></span></li>          
+                            </ul>						  					  
+						</header>					              
+                        <div class="post-thumbnail col-sm-2"><img src="<?php echo $pro_pic ?>" class="img-responsive"></div>                   
+                        <div class="entry-content col-sm-10"><?php echo $comment->comment_content ?></div>
                     </div>
                 <?php 
                 endforeach;            

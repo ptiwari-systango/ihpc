@@ -241,16 +241,28 @@ function ihpc_setup() {
 
 	add_theme_support( 'starter-content', $starter_content );
 
-	//New Customer type role
-	/*$result = add_role(
-		'companycustomer',
-		__( 'Customer' ),
+	//Adding three roles for company type
+	add_role('starter_plan', __( 'Free Plan' ),
 		array(
 			'read'         => true,  // true allows this capability
 			'edit_posts'   => true,
 			'delete_posts' => false, // Use false to explicitly deny
 		)
-	);*/
+	);
+	add_role('plus_plan', __( 'Plus Plan' ),
+		array(
+			'read'         => true,  // true allows this capability
+			'edit_posts'   => true,
+			'delete_posts' => false, // Use false to explicitly deny
+		)
+	);
+	add_role('enterprise_plan', __( 'Enterprise Plan' ),
+		array(
+			'read'         => true,  // true allows this capability
+			'edit_posts'   => true,
+			'delete_posts' => false, // Use false to explicitly deny
+		)
+	);
 }
 add_action( 'after_setup_theme', 'ihpc_setup' );
 
@@ -886,21 +898,23 @@ function get_ihpc_categories($ihpc_taxonomy,$number=24,$parent=0){
 	$cates = array();
 	$i = 0;
 	foreach ($terms as $key => $term) {
-		$acf_term_format = $ihpc_taxonomy."_".$term->term_id;
-		$term_url = get_field('category_icon', $acf_term_format);
-		$cates[$i]['term_taxonomy_id'] = $term->term_id;
-		$cates[$i]['permalink'] 	= get_term_link($term->term_id);
-		$cates[$i]['img_url'] 		= $term_url;
-		$cates[$i]['term_id'] 		= $term->term_id;
-		$cates[$i]['name'] 			= $term->name;
-		$cates[$i]['slug'] 			= $term->slug;
-		$cates[$i]['term_group'] 	= $term->term_group;		
-		$cates[$i]['taxonomy'] 		= $term->taxonomy;
-		$cates[$i]['description'] 	= $term->description;
-		$cates[$i]['parent'] 		= $term->parent;
-		$cates[$i]['count'] 		= $term->count;
-		$cates[$i]['filter'] 		= $term->filter;
-		$i++;
+		if( ($term->slug != 'all_users') && ($term->slug != 'all_categories') ){
+			$acf_term_format = $ihpc_taxonomy."_".$term->term_id;
+			$term_url = get_field('category_icon', $acf_term_format);
+			$cates[$i]['term_taxonomy_id'] = $term->term_id;
+			$cates[$i]['permalink'] 	= get_term_link($term->term_id);
+			$cates[$i]['img_url'] 		= $term_url;
+			$cates[$i]['term_id'] 		= $term->term_id;
+			$cates[$i]['name'] 			= $term->name;
+			$cates[$i]['slug'] 			= $term->slug;
+			$cates[$i]['term_group'] 	= $term->term_group;		
+			$cates[$i]['taxonomy'] 		= $term->taxonomy;
+			$cates[$i]['description'] 	= $term->description;
+			$cates[$i]['parent'] 		= $term->parent;
+			$cates[$i]['count'] 		= $term->count;
+			$cates[$i]['filter'] 		= $term->filter;
+			$i++;
+		}		
 	}
 	return $cates;
 }
@@ -1033,12 +1047,30 @@ add_action('admin_post_nopriv_register_company','register_company_callback');
 function register_company_callback(){
 	if( !empty($_REQUEST) ){
 		if( wp_verify_nonce($_POST['security-code'],'register_company') ){
+			//Checking if company exists or not: Start
+			$cmp_args1 = array(	'posts_per_page' => -1,
+								'post_type' 	 => 'companies',
+								'title' 		 => $_REQUEST['reg_company_name']
+							);
+			$companies = get_posts( $cmp_args1 );
+			if( !empty($companies) ){
+				$company 	= $companies[0];
+				$company_id = $company->ID;
+			}
+			else{
+				$company_arg2 = array();
+				$company_arg2['post_title'] 	= $_REQUEST['reg_company_name'];
+				$company_arg2['post_status'] 	= 'pending';
+			    $company_arg2['post_type'] 		= 'companies';
+				$company_id = wp_insert_post($company_arg2);			
+			}
+			//END:
 			$user_arg = array();
 			$user_arg['user_pass'] 		= '123456789';
 			$user_arg['user_login'] 	= $_REQUEST['reg_company_name'];
 			$user_arg['user_email'] 	= $_REQUEST['reg_company_email'];
 			$user_arg['display_name'] 	= $_REQUEST['reg_company_title'];
-		    $user_arg['role'] 			= 'contributor';
+		    $user_arg['role'] 			= $_REQUEST['contract_type'];
 			$fullName = explode(" ", $_REQUEST['reg_company_fullname']);
 			if( count($fullName) == 1 ){
 				$firstName = $fullName[0];
@@ -1053,9 +1085,12 @@ function register_company_callback(){
 			}			
 		    $user_id = wp_insert_user( $user_arg );		    
 		    if ( !is_wp_error( $user_id ) ) {
+		    	//Updating the user phone
 		    	update_user_meta( $user_id, 'user_phone	', $user_arg['reg_company_phone'] );
+		    	//Relating the user with company
+		    	update_user_meta( $user_id, 'associated_company', array($company_id) );
 				wp_send_new_user_notifications( $user_id, 'both' );
-				$redirect_to = site_url('login?msg=successfull registered a free plan, please login to comment');
+				$redirect_to = site_url('company-signup?msg=successfull registered a free plan, please login to comment');
 				wp_safe_redirect( $redirect_to );
 			}
 			else{
@@ -1098,6 +1133,137 @@ function get_post_by_category($post_type,$offset,$post_per_page,$category_name){
 		return $array;
 	} 
 	else {
+		return $array;
+	}
+}
+
+
+
+/*Write a review*/
+add_action('wp_ajax_submit_reivew_form', 'submit_reivew_form');
+add_action('wp_ajax_nopriv_submit_reivew_form', 'submit_reivew_form');
+function submit_reivew_form(){	
+	parse_str($_REQUEST['form_json'], $data);
+	$insertArray 	= array();
+	$insertArray['post_title'] 				= $data['review_title'];
+	$insertArray['post_content'] 			= $data['review_text'];
+	$insertArray['company'] 				= $data['company'];
+    $insertArray['product_or_service'] 		= !empty($data['product_or_service']) ? $data['product_or_service']:'';
+    $insertArray['readed_term_of_services'] = !empty($data['readed_term_of_services']) ? 1:0;    
+    $insertArray['post_status'] 			= 'pending';
+    $insertArray['post_type'] 				= 'review';
+		
+	$review_inserted_id = wp_insert_post($insertArray);
+	if( !empty($review_inserted_id) ){		
+		/****
+		* Checking if company exists or not, 
+		* if company exists then getting its company id 
+		* else creating a new company.
+		****/
+		$cmp_args1 = array(	'posts_per_page' => -1,
+							'post_type' 	 => 'companies',
+							'title' 		 => $insertArray['company']
+						);
+		$companies = get_posts( $cmp_args1 );
+		if( !empty($companies) ){
+			$company 	= $companies[0];
+			$company_id = $company->ID;
+		}
+		else{
+			$company_arg2 = array();
+			$company_arg2['post_title'] 	= $insertArray['company'];
+			$company_arg2['post_status'] 	= 'pending';
+		    $company_arg2['post_type'] 		= 'companies';
+		    $company_arg2['post_category'] 	= array( $data['company_category'] );
+			$company_id = wp_insert_post($company_arg2);			
+		}
+		if(!empty($company_id)){
+			update_post_meta( $review_inserted_id, 'REVIEW_COMPANYID', $company_id);
+		}
+		//END:
+		$photos = $videos = '';
+		//If files are uploaded and post have been created
+		if( !empty($_FILES) && !empty($review_inserted_id) ){
+			foreach ($_FILES as $key => $file) {
+				$file_nonce = $key."_nonce";				
+				$attach_id  = upload_media_to_review_post( $file_nonce, $key, $review_inserted_id );
+				if( !empty($attach_id) ){
+					if( substr($key, 0,9) == 'add_photo' ){
+						$photos .= wp_get_attachment_url( $attach_id )."\n";
+					}
+					if( substr($key, 0,9) == 'add_video' ){
+						$videos .= wp_get_attachment_url( $attach_id )."\n";
+					}	
+				}
+			}
+		}
+		//saving the form fields in post meta
+		update_post_meta( $review_inserted_id, 'review_accepted_terms_conditions', $insertArray['readed_term_of_services'] );
+		update_post_meta( $review_inserted_id, 'review_product_or_service', $insertArray['product_or_service'] );
+		update_post_meta( $review_inserted_id, 'uploaded_photos', $photos );
+		update_post_meta( $review_inserted_id, 'uploaded_videos', $videos );
+		//echo $review_inserted_id;
+		echo $url = site_url()."/submit-review?screen_no=2&reviewId=$review_inserted_id";
+	}
+	else{
+		echo "Review is not created";
+	}
+	exit();
+}
+
+
+//$_POST['add_photo_nonce']
+function upload_media_to_review_post( $nonce, $file_name, $post_id ) {
+	//if ( isset( $nonce ) && wp_verify_nonce( $nonce, $file_name ) ) {
+		require_once( ABSPATH.'wp-admin/includes/image.php' );
+		require_once( ABSPATH.'wp-admin/includes/file.php' );
+		require_once( ABSPATH.'wp-admin/includes/media.php' );		
+		$attachment_id = media_handle_upload( $file_name, $post_id );		
+		if ( is_wp_error( $attachment_id ) ) {
+			return 0;
+		} 
+		else {
+			//return wp_get_attachment_url( $attachment_id );
+			return $attachment_id;
+		}
+	/*} else {
+		return "The security check failed, maybe show the user an error.";
+	}*/
+}
+
+function ihpc_get_users( $role = array('Subscriber') ){
+	$args 		= array( 'role__in' => $role );	
+	$user_query = new WP_User_Query( $args );
+	$array 		= array();
+	$i = 0;
+	if ( ! empty( $user_query->results ) ) {
+		foreach ( $user_query->results as $user ) :
+			$user_id = $user->data->ID;
+			$pro_pic = get_field('user_profile_pic','user_'.$user_id);
+			if( empty($pro_pic) ){
+				$pro_pic = get_stylesheet_directory_uri()."/assets/images/avatar_standart_light.png";
+			}
+			$associated_company = get_field('associated_company','user_'.$user_id);
+			if( !empty($associated_company) ){				
+				$company_title = get_the_title( $associated_company[0] );
+			}
+			else{
+				$company_title = ''	;
+			}
+			$array[$i]['user_id'] 				= $user_id;
+			$array[$i]['roles'] 				= $user->roles;
+			$array[$i]['pro_pic'] 				= $pro_pic;
+			$array[$i]['user_full_name'] 		= $user->data->display_name;
+			$array[$i]['user_review_count'] 	= count_user_posts( $user_id , 'review' );
+			$array[$i]['user_comment_count'] 	= 0;
+			$array[$i]['author_url'] 			= get_author_posts_url( $user_id );
+			$array[$i]['COMPANY_ID'] 			= $associated_company;
+			$array[$i]['associated_companies'] 	= $company_title;
+			$i++;
+		endforeach;
+		return $array;
+	}
+	else{
 		return $array;
 	}
 }

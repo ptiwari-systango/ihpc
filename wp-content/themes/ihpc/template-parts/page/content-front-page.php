@@ -64,10 +64,16 @@
 						}
 						?>
 						<div class="col-xs-12 col-sm-6 col-md-4">
-							<div class="thumbnail"> <img src="<?php echo esc_url($feat_image);?>" alt="" width="263" height="164" class="alignnone size-full wp-image-144" />
-								<div class="caption">
+							<div class="thumbnail"> 
+								<div class="thumb-image">
+									<img src="<?php echo esc_url($feat_image);?>" alt="" class="alignnone size-full wp-image-144" />
+								</div>	
+								<div class="caption dis-cap">
 									<p><?php  esc_html(the_excerpt());?></p>
-									<a href="<?php esc_url(the_permalink());?>" class="btn read_more" role="button">READ MORE</a> </div>
+								 </div>
+								<div class="button-bottom">
+									<a href="<?php esc_url(the_permalink());?>" class="btn read_more" role="button">READ MORE</a>
+								</div>
 								</div>
 							</div>
 						<?php

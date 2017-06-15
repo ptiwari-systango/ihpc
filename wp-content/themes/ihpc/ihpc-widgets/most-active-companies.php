@@ -75,13 +75,13 @@ class ihpc_most_active_companies extends WP_Widget {
 				if( empty($thumb_url) )
 					$thumb_url = get_stylesheet_directory_uri().'/assets/images/avatar_standart_light.png';
 				$users_str .= '<li>
-								<a href="'.get_permalink().'">
-									<img src="'.$thumb_url.'" style="width:100px;border-radius:50%">'.get_the_title().'
+								<a class="" href="'.get_permalink().'">
+									<img src="'.$thumb_url.'"> '.get_the_title().'
 								</a>
 							</li>';
 			}
 		}
-		$users_str .= '</ul><div><a href="'.site_url('companies').'" class="more-link">More</a></div>';
+		$users_str .= '</ul><div><a href="'.site_url('companiestax/all_users').'" class="more-link">More</a></div>';
 		echo __( $users_str , 'wpb_widget_domain' );
 		echo $args['after_widget'];		
 	}

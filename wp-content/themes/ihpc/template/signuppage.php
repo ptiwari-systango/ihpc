@@ -1,7 +1,7 @@
 <?php
 ob_start();
 /**
- * Template Name: Sign Up Page
+ * Template Name: User: Sign Up Page
  */
 get_header('fullwidth');
 

@@ -1,38 +1,31 @@
 <?php get_header(); ?>
 
 <div class="row">
-	<h1>Users</h1>
+ <h1>Users</h1>	
+ <div class="holder clearfix items-holder">
 	<?php
-	$args = array( 'role' => 'Subscriber' );
-	$user_query = new WP_User_Query( $args );
-	if ( ! empty( $user_query->results ) ) {
-		foreach ( $user_query->results as $user ) :
-			$user_id = $user->data->ID;
-			$pro_pic = get_field('user_profile_pic','user_'.$user_id);
-			if( empty($pro_pic) ){
-				$pro_pic = get_stylesheet_directory_uri()."/assets/images/avatar_standart_light.png";
-			}
-			$user_full_name 	= $user->data->display_name;
-			$user_review_count 	= count_user_posts( $user_id , 'review' );
-			$user_comment_count = 0;
-			$author_url 		= get_author_posts_url( $user_id );
-			?>
-				<!-- Author panel in loop -->
-				<div class="col-md-3">
-					<div><img src="<?php echo $pro_pic ?>" class="img-responsive"></div>
-					<div>
-						<a href="<?php echo $author_url; ?>">
-							<?php echo $user_full_name; ?>
-						</a>
+	$subscribers = ihpc_get_users('Subscriber');	
+	if ( ! empty( $subscribers ) ) {
+		foreach ( $subscribers as $subscriber ) : ?>
+			<!-- Author panel in loop -->
+			<div class="item">
+				<div class="img-holder"><img src="<?php echo $subscriber['pro_pic'] ?>" class="img-responsive"></div>
+				<div class="info-block">
+					<div class="name-holder">
+					<a href="<?php echo $subscriber['author_url']; ?>" class="name">
+						<?php echo $subscriber['user_full_name']; ?>
+					</a>
 					</div>
-					<div>Columbia, South Carolina</div>
-					<div>
-						<a href="#"><?php echo $user_review_count; ?> reviews</a> 
-						<a href="#"><?php echo $user_comment_count; ?> comments</a>
-					</div>
-				</div>
-				<!-- End -->
-
+			<div class="location">
+				  <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Columbia, South Carolina</a>
+			</div>
+				<ul class="user-social-groups">
+					<li><a href="#"><?php echo $subscriber['user_review_count']; ?> reviews</a> </li>
+					<li><a href="#"><?php echo $subscriber['ser_comment_count']; ?> comments</a></li>
+				</ul>
+			</div>
+			<!-- End -->
+			</div>
 			<?php
 		endforeach;
 	} 
@@ -40,6 +33,40 @@
 		echo 'No users found.';
 	}
 	?>
+</div>
+</div>
+
+<div class="row">
+	<h1>Companies</h1>	
+	<div class="holder clearfix items-holder">
+		<?php 
+		$contributors = ihpc_get_users(array('starter_plan','plus_plan','enterprise_plan'));	
+		if ( ! empty( $contributors ) ) {
+			foreach ( $contributors as $contributor ) : ?>
+				<!-- Author panel in loop -->
+				<div class="item">					
+					<div class="img-holder"><img src="<?php echo $contributor['pro_pic'] ?>" class="img-responsive"></div>
+					<div class="info-block">
+						<div class="name-holder">
+						<a href="<?php echo $contributor['author_url']; ?>" class="name">
+							<?php echo $contributor['user_full_name']; ?>
+						</a>
+						</div>
+				<div class="location"><?php echo (!empty($contributor['associated_companies']) ? 'from '.$contributor['associated_companies'] : ''); ?></div>
+					<ul class="user-social-groups">
+						<li><a href="#"><?php echo $contributor['user_comment_count']; ?> comments</a></li>
+					</ul>
+				</div>
+				<!-- End -->
+				</div>
+				<?php
+			endforeach;
+		} 
+		else {
+			echo 'No users found.';
+		}
+		?>
+	</div>
 </div>
 
 <?php get_footer(); ?>

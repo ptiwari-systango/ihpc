@@ -41,24 +41,21 @@ $categories = get_ihpc_categories('companiestax',0);
 				</div>
 		<?php endforeach; ?>
 		<?php
-		else: 
-			foreach ($categories as $key => $category): ?>
-			<div class="col-md-4">
-				<?php
-				$cat_name = ucfirst((trim($category['name'])) );
-				$firstLetter = substr($cat_name, 0,1);
-				foreach (range('A', 'Z') as $char) {
+		else:			
+			foreach (range('A', 'Z') as $char) {
+				echo '<div class="col-md-4"><h1>'.$char.'</h1><ul>';
+				foreach ($categories as $key => $category):
+					$cat_name 		= ucfirst((trim($category['name'])) );
+					$firstLetter 	= substr($cat_name, 0,1);
 					if($char == $firstLetter){
 						echo '<li>
 								<a href="'.$category['permalink'].'">'.$category['name'].'</a>
 								<span>'.$category['count'].'</span>
 							</li>';
 					}
-				}
-				?>
-			</div>
-			<?php 
-			endforeach;
+				endforeach;
+				echo '</ul></div>';
+			}
 		endif; ?>
 </div>
 
