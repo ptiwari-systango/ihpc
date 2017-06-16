@@ -674,12 +674,12 @@ require get_parent_theme_file_path( '/inc/icon-functions.php' );
 
 //Including ReduxFramework in theme
 //Author: DharmendraSingh
-if ( !class_exists( 'ReduxFramework' ) && file_exists( dirname( __FILE__ ) . '/admin/framework.php' ) ) {
+/*if ( !class_exists( 'ReduxFramework' ) && file_exists( dirname( __FILE__ ) . '/admin/framework.php' ) ) {
 	require_once( dirname( __FILE__ ) . '/admin/framework.php' );
 }
 if ( !isset( $redux_demo ) && file_exists( dirname( __FILE__ ) . '/admin/options-config.php' ) ) {
 	require_once( dirname( __FILE__ ) . '/admin/options-config.php' );
-}
+}*/
 
 //Require registered post type posts
 require_once(dirname( __FILE__ ).'/post-types/postregister.php');
@@ -720,7 +720,6 @@ function archive_company_filter(){
 		}
 		return $query;
 	}
-
 }
 
 //Social Login FB,Google,Twitter
@@ -894,7 +893,8 @@ function get_ihpc_categories($ihpc_taxonomy,$number=24,$parent=0){
 					'number' => $number,
 					'parent' => $parent
 				);
-	$terms = get_terms( $args );
+
+	$terms = get_terms( $args );	
 	$cates = array();
 	$i = 0;
 	foreach ($terms as $key => $term) {
@@ -1139,7 +1139,10 @@ function get_post_by_category($post_type,$offset,$post_per_page,$category_name){
 
 
 
-/*Write a review*/
+/*****
+* Functions for 'Write A Review' page
+******/
+//Function for step 1
 add_action('wp_ajax_submit_reivew_form', 'submit_reivew_form');
 add_action('wp_ajax_nopriv_submit_reivew_form', 'submit_reivew_form');
 function submit_reivew_form(){	
@@ -1210,7 +1213,67 @@ function submit_reivew_form(){
 	}
 	exit();
 }
-
+//Function for step 2 and 3
+add_action('wp_ajax_review_additional_form', 'review_additional_form_callback');
+add_action('wp_ajax_nopriv_review_additional_form', 'review_additional_form_callback');
+function review_additional_form_callback(){
+	parse_str($_REQUEST['form_json'],$data);
+	$reviewId = $_REQUEST['reviewId'];
+	//print_r($data);
+	//Fields from step 2
+	if( !empty($data['ComplaintForm']['full_name']) ){
+		$full_name = $data['ComplaintForm']['full_name'];
+		update_post_meta($reviewId,'_reviewer_full_name',$full_name);
+	}
+	if( !empty($data['ComplaintForm']['personal_email']) ){
+		$personal_email = $data['ComplaintForm']['personal_email'];
+		update_post_meta($reviewId,'_reviewer_email',$personal_email);
+	}	
+	if( !empty($data['ComplaintForm']['personal_phone']) ){
+		$personal_phone = $data['ComplaintForm']['personal_phone'];
+		update_post_meta($reviewId,'_reviewer_phone',$personal_phone);
+	}
+	if( !empty($data['ComplaintForm']['pissedReasonTemp']) ){
+		$pissedReasonTemp = $data['ComplaintForm']['pissedReasonTemp'];
+		update_post_meta($reviewId,'_unhappy_because',$pissedReasonTemp);
+	}
+	if( !empty($data['ComplaintForm']['otherPissedReasonTemp']) ){
+		$otherPissedReasonTemp = $data['ComplaintForm']['otherPissedReasonTemp'];
+		update_post_meta($reviewId,'_unhappy_because_other_reason',$otherPissedReasonTemp);
+	}
+	if( !empty($data['ComplaintForm']['pleasedReasonTemp']) ){
+		$pleasedReasonTemp = $data['ComplaintForm']['pleasedReasonTemp'];
+		update_post_meta($reviewId,'_happy_because',$pleasedReasonTemp);
+	}
+	if( !empty($data['ComplaintForm']['otherPleasedReasonTemp']) ){
+		$otherPleasedReasonTemp = $data['ComplaintForm']['otherPleasedReasonTemp'];
+		update_post_meta($reviewId,'_happy_because_of_other_reason',$otherPleasedReasonTemp);
+	}
+	if( !empty($data['ComplaintForm']['monetary_value']) ){
+		$monetary_value 		= $data['ComplaintForm']['monetary_value'];
+		update_post_meta($reviewId,'_value_of_loss',$monetary_value);
+	}
+	if( !empty($data['ComplaintForm']['wanted_solution']) ){
+		$wanted_solution = $data['ComplaintForm']['wanted_solution'];
+		update_post_meta($reviewId,'_want',$wanted_solution);
+	}
+	if( !empty($data['ComplaintForm']['other_wanted_solution']) ){
+		$other_wanted_solution 	= $data['ComplaintForm']['other_wanted_solution'];
+		update_post_meta($reviewId,'_want_other_solution',$other_wanted_solution);
+	}
+	if( !empty($data['ComplaintForm']['online_business_location']) ){
+		$online_business_location 	= $data['ComplaintForm']['online_business_location'];
+		update_post_meta($reviewId,'_company_website',$online_business_location);
+	}
+	//Fields from step 3
+	if( !empty($data['business-type']) ){
+		$business_type 	= $data['business-type'];
+		update_post_meta($reviewId,'_bussiness_type',$business_type);
+	}	
+	echo $url = site_url()."/submit-review?screen_no=3&reviewId=$reviewId";
+	exit();
+}
+//Function for step 4
 
 //$_POST['add_photo_nonce']
 function upload_media_to_review_post( $nonce, $file_name, $post_id ) {
